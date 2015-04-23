@@ -30,7 +30,7 @@ Gem::Specification.new do |s|
   s.executables           = s.files.grep(%r{^bin/}) { |f| File.basename(f) }
   s.require_path          = 'lib'
 
-  s.add_dependency 'cms_scanner', '~> 0.0.25'
+  s.add_dependency 'cms_scanner', '~> 0.0.26'
   # DB dependencies
   s.add_dependency 'dm-core', '~> 1.2'
   s.add_dependency 'dm-migrations', '~> 1.2'
