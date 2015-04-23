@@ -1,0 +1,31 @@
+<% if @plugins.empty? -%>
+<%= blue('[i]') %> No plugins Found.
+<% else -%>
+<%= blue('[i]') %> Plugin(s) Identified:
+<% @plugins.each do |plugin| -%>
+
+<%= green('[+]') %> <%= plugin %>
+ | Location: <%= plugin.url %>
+<% if plugin.readme_url -%>
+ | Readme: <%= plugin.readme_url %>
+<% end -%>
+<% if plugin.changelog_url -%>
+ | Changelog: <%= plugin.changelog_url %>
+<% end -%>
+<% if plugin.directory_listing? -%>
+ | <%= red('[!]') %> Directory listing is enabled
+<% end -%>
+<% if plugin.error_log? -%>
+ | <%= red('[!]') %> An error log file has been found: <%= plugin.url('error_log') %>
+<% end -%>
+ |
+<%= render('@finding', item: plugin) -%>
+ |
+<% if plugin.version -%>
+ | Version: <%= plugin.version %> (<%= plugin.version.confidence %>% confidence)
+<%= render('@finding', item: plugin.version) -%>
+<% else -%>
+ | The version could not be determined.
+<% end -%>
+<% end -%>
+<% end %>

@@ -1,0 +1,8 @@
+<% if @users.empty? -%>
+<%= blue('[i]') %> No Valid Passwords Found.
+<% else -%>
+<%= blue('[i]') %> Valid Combinations Found:
+<% @users.each do |user| -%>
+ | Username: <%= user.username %>, Password: <%= user.password %>
+<% end -%>
+<% end %>

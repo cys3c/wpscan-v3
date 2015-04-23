@@ -1,0 +1,6 @@
+<% if @theme -%>
+<%= green('[+]') %> WordPress theme in use: <%= @theme %>
+<%= render('@theme', theme: @theme, show_parents: true) -%>
+<% else -%>
+[i] The main theme could not be detected.
+<% end %>

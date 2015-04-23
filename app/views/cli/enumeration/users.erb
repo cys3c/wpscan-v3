@@ -1,0 +1,10 @@
+<% if @users.empty? -%>
+<%= blue('[i]') %> No Users Found.
+<% else -%>
+<%= blue('[i]') %> User(s) Identified:
+<% @users.each do |user| -%>
+
+<%= green('[+]') %> <%= user %>
+<%= render('@finding', item: user) -%>
+<% end -%>
+<% end %>

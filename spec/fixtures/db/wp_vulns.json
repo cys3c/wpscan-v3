@@ -1,0 +1,40 @@
+[
+   {
+      "3.8.1" : {
+         "vulnerabilities" : [
+            {
+               "created_at" : "2014-08-01T10:58:19.000Z",
+               "updated_at" : "2014-09-16T13:52:17.000Z",
+               "title" : "WP 3.8.1 - Vuln 1",
+               "id" : 1,
+               "vuln_type" : "SQLI"
+            },
+            {
+               "cve" : ["2014-0166"],
+               "fixed_in" : "3.8.2",
+               "osvdb" : ["10"],
+               "created_at" : "2014-08-01T10:58:19.000Z",
+               "updated_at" : "2014-09-16T13:53:11.000Z",
+               "url" : ["url-2","url-3"],
+               "id" : 2,
+               "title" : "WP 3.8.1 - Vuln 2"
+            }
+         ]
+      }
+   },
+   {
+      "3.8" : {
+         "vulnerabilities" : [
+            {
+               "created_at" : "2014-08-01T10:58:19.000Z",
+               "updated_at" : "2014-09-16T15:45:26.000Z",
+               "url" : ["url-4"],
+               "title" : "WordPress 3.8 - Vuln 3",
+               "id" : 3,
+               "osvdb" : ["11"],
+               "vuln_type" : "AUTHBYPASS"
+            }
+         ]
+      }
+   }
+]

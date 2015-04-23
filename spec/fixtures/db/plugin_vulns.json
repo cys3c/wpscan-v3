@@ -1,0 +1,21 @@
+[
+   {
+      "no-vulns" : { "vulnerabilities": [] }
+   },
+   {
+      "theme-my-login" : {
+         "vulnerabilities" : [
+            {
+               "title" : "Theme My Login - First Vuln",
+               "fixed_in" : "6.3.10",
+               "id" : 1,
+               "vuln_type": "LFI"
+            },
+            {
+               "title": "Theme My Login - No Fixed In",
+               "id": 2
+            }
+         ]
+      }
+   }
+]

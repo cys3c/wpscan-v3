@@ -1,0 +1,10 @@
+<% if @config_backups.empty? -%>
+<%= blue('[i]') %> No Backups Found.
+<% else -%>
+<%= blue('[i]') %> Backup(s) Identified:
+<% @config_backups.each do |config_backup| -%>
+
+<%= green('[+]') %> <%= config_backup %>
+<%= render('@finding', item: config_backup) -%>
+<% end -%>
+<% end %>

@@ -1,0 +1,10 @@
+<% if @medias.empty? -%>
+<%= blue('[i]') %> No Medias Found.
+<% else -%>
+<%= blue('[i]') %> Medias(s) Identified:
+<% @medias.each do |media| -%>
+
+<%= green('[+]') %> <%= media %>
+<%= render('@finding', item: media) -%>
+<% end -%>
+<% end %>
