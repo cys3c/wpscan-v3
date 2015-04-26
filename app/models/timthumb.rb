@@ -50,7 +50,10 @@ module WPScan
     def rce_webshot_vuln
       Vulnerability.new(
         'Timthumb <= 2.8.13 WebShot Remote Code Execution',
-        { url: ['http://seclists.org/fulldisclosure/2014/Jun/117', 'https://github.com/wpscanteam/wpscan/issues/519'] },
+        {
+          url: ['http://seclists.org/fulldisclosure/2014/Jun/117', 'https://github.com/wpscanteam/wpscan/issues/519'],
+          cve: '2014-4663'
+        },
         'RCE',
         '2.8.14'
       )

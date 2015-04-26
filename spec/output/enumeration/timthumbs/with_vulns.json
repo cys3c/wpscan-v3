@@ -18,7 +18,8 @@
               "url": [
                 "http://seclists.org/fulldisclosure/2014/Jun/117",
                 "https://github.com/wpscanteam/wpscan/issues/519"
-              ]
+              ],
+              "cve": "2014-4663"
             }
           },
           {
