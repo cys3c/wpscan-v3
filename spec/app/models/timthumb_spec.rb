@@ -2,7 +2,8 @@ require 'spec_helper'
 
 describe WPScan::Timthumb do
   subject(:timthumb) { described_class.new(url, opts) }
-  let(:url)          { 'http://e.oeg/wp-content/timthumb.php' }
+  let(:url)          { 'http://wp.lab/wp-content/timthumb.php' }
+  let(:fixtures)     { File.join(FIXTURES, 'models', 'timthumb') }
   let(:opts)         { {} }
 
   describe '#new' do
@@ -10,7 +11,7 @@ describe WPScan::Timthumb do
   end
 
   # The fact that the finders should only be called once is handled by the
-  # vulnerabilities, vulnerable? specs below this one
+  # vulnerabilities, vulnerable? specs below
   describe '#version' do
     after do
       expect(WPScan::Finders::TimthumbVersion::Base).to receive(:find).with(timthumb, @expected_opts)
@@ -56,6 +57,23 @@ describe WPScan::Timthumb do
     end
   end
 
+  describe '#webshot_enabled?' do
+    # Seems like we can't put a regex such as /#{timthumb.url}?src=.*&webshot=1/i
+    before { stub_request(:get, /.*/).to_return(body: File.read(File.join(fixtures, fixture))) }
+
+    context 'when enabled' do
+      let(:fixture) { '2.8.13_webshot_enabled.html' }
+
+      its(:webshot_enabled?) { should eql true }
+    end
+
+    context 'when disabled' do
+      let(:fixture) { '2.8.13_webshot_disabled.html' }
+
+      its(:webshot_enabled?) { should eql false }
+    end
+  end
+
   describe '#vulnerabilities, #vulnerable?' do
     before { expect(WPScan::Finders::TimthumbVersion::Base).to receive(:find).and_return(version) }
 
@@ -86,8 +104,19 @@ describe WPScan::Timthumb do
       context 'when version > 1.35 and < 2.8.13' do
         let(:version_number) { '2.8.10' }
 
-        its(:vulnerabilities) { should eq([timthumb.rce_webshot_vuln]) }
-        it { should be_vulnerable }
+        context 'when webshot enabled' do
+          before { expect(timthumb).to receive(:webshot_enabled?).and_return(true) }
+
+          its(:vulnerabilities) { should eq([timthumb.rce_webshot_vuln]) }
+          it { should be_vulnerable }
+        end
+
+        context 'when webshot disabled' do
+          before { expect(timthumb).to receive(:webshot_enabled?).and_return(false) }
+
+          its(:vulnerabilities) { should eq([]) }
+          it { should_not be_vulnerable }
+        end
       end
     end
   end

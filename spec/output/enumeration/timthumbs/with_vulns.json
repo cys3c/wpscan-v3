@@ -16,7 +16,8 @@
             "fixed_in": "2.8.14",
             "references": {
               "url": [
-                "http://seclists.org/fulldisclosure/2014/Jun/117"
+                "http://seclists.org/fulldisclosure/2014/Jun/117",
+                "https://github.com/wpscanteam/wpscan/issues/519"
               ]
             }
           },

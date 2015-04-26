@@ -8,7 +8,9 @@
  |
  | [!] Title: Timthumb <= 2.8.13 WebShot Remote Code Execution
  |     Fixed in: 2.8.14
- |     Reference: http://seclists.org/fulldisclosure/2014/Jun/117
+ |     References:
+ |      - http://seclists.org/fulldisclosure/2014/Jun/117
+ |      - https://github.com/wpscanteam/wpscan/issues/519
  |
  | [!] Title: Timthumb <= 1.32 Remote Code Execution
  |     Fixed in: 1.33
