@@ -58,8 +58,10 @@ describe WPScan::Timthumb do
   end
 
   describe '#webshot_enabled?' do
-    # Seems like we can't put a regex such as /#{timthumb.url}?src=.*&webshot=1/i
-    before { stub_request(:get, /.*/).to_return(body: File.read(File.join(fixtures, fixture))) }
+    before do
+      stub_request(:get, /#{timthumb.url}\?src=.*&webshot=1/i)
+        .to_return(body: File.read(File.join(fixtures, fixture)))
+    end
 
     context 'when enabled' do
       let(:fixture) { '2.8.13_webshot_enabled.html' }
