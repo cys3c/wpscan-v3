@@ -23,13 +23,12 @@ module WPScan
 
         # @return [ Boolean ]
         def cached_style?
-          # TODO: remove the method: once https://github.com/wpscanteam/CMSScanner/issues/28 has been done
-          Typhoeus::Config.cache.get(browser.forge_request(target.style_url, method: :get)) ? true : false
+          Typhoeus::Config.cache.get(browser.forge_request(target.style_url)) ? true : false
         end
 
         # @return [ Version ]
         def style_version
-          return unless Browser.get(target.style_url).body =~ /Version:\s*([^\s]+)/i
+          return unless Browser.get(target.style_url).body =~ /Version:\s*(?!trunk)([0-9a-z\.-]+)/i
 
           WPScan::Version.new(
             Regexp.last_match[1],
