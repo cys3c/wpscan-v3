@@ -20,14 +20,14 @@ module WPScan
       msg
     end
 
-    def message
+    def to_s
       "HTTP Error: #{failure_details}"
     end
   end
 
   # Used in the Updater
   class DownloadError < HttpError
-    def message
+    def to_s
       "Unable to get #{failure_details}"
     end
   end
