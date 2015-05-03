@@ -1,6 +1,6 @@
 module WPScan
   # HTTP Error
-  class HttpError < StandardError
+  class HTTPError < StandardError
     attr_reader :response
 
     # @param [ Typhoeus::Response ] res
@@ -26,7 +26,7 @@ module WPScan
   end
 
   # Used in the Updater
-  class DownloadError < HttpError
+  class DownloadError < HTTPError
     def to_s
       "Unable to get #{failure_details}"
     end
