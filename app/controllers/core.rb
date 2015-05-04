@@ -21,17 +21,27 @@ module WPScan
         @local_db ||= DB::Updater.new(DB_DIR)
       end
 
+      def update_db
+        output('db_update_started')
+        output('db_update_finished', updated: local_db.update, verbose: parsed_options[:verbose])
+
+        exit(0) unless parsed_options[:url]
+      end
+
       def before_scan
         output('banner')
 
-        if parsed_options[:update] || local_db.missing_files?
-          output('db_update_started')
-          output('db_update_finished', updated: local_db.update, verbose: parsed_options[:verbose])
+        update_db if parsed_options[:update] || local_db.missing_files?
 
-          exit(0) unless parsed_options[:url]
+        begin
+          super(false) # disable banner output
+        rescue CMSScanner::HTTPRedirectError => e
+          raise e unless e.redirect_uri.path =~ %r{/wp-admin/install.php$}i
+
+          output('not_fully_configured', url: e.redirect_uri.to_s)
+
+          exit(0)
         end
-
-        super(false) # disable banner output
 
         DB.init_db
 

@@ -29,7 +29,7 @@ describe WPScan::Controller::Core do
       expect(core.target).to receive(:server).and_return(@stubbed_server)
       expect(core.load_server_module).to eql @expected
 
-      [core.target, WPScan::WpItem.new('http://wp.lab/', core.target)].each do |instance|
+      [core.target, WPScan::WpItem.new(target_url, core.target)].each do |instance|
         expect(instance).to respond_to(:directory_listing?)
         expect(instance).to respond_to(:directory_listing_entries)
 
@@ -64,7 +64,7 @@ describe WPScan::Controller::Core do
 
   describe '#before_scan' do
     before do
-      stub_request(:any, target_url)
+      stub_request(:get, target_url)
 
       expect(core.formatter).to receive(:output).with('banner', hash_including(verbose: nil), 'core')
 
@@ -72,10 +72,13 @@ describe WPScan::Controller::Core do
         expect_any_instance_of(WPScan::DB::Updater).to receive(:missing_files?).and_return(false)
       end
 
-      expect(core).to receive(:load_server_module)
-      expect(core.target).to receive(:wordpress?).and_return(wordpress?)
+      unless defined?(redirection)
+        expect(core).to receive(:load_server_module)
+        expect(core.target).to receive(:wordpress?).and_return(wordpress?)
+      end
     end
 
+    # TODO: add the case when --url is not supplied
     context 'when --update' do
       let(:wordpress?)     { true }
       let(:parsed_options) { super().merge(update: true) }
@@ -90,6 +93,37 @@ describe WPScan::Controller::Core do
           .with('db_update_finished', hash_including(verbose: nil), 'core').ordered
 
         expect { core.before_scan }.to_not raise_error
+      end
+    end
+
+    context 'when a redirect occurs' do
+      before { expect(core.target).to receive(:redirection).and_return(redirection) }
+
+      context 'to the wp-admin/install.php' do
+        let(:redirection) { "#{target_url}wp-admin/install.php" }
+
+        it 'calls the formatter with the correct parameters and exit' do
+          expect(core.formatter).to receive(:output)
+            .with('not_fully_configured', hash_including(url: redirection), 'core').ordered
+
+          expect { core.before_scan }.to raise_error(SystemExit)
+        end
+      end
+
+      context 'to something else' do
+        let(:redirection) { 'http://g.com/' }
+
+        it 'raises an error' do
+          expect { core.before_scan }.to raise_error(CMSScanner::HTTPRedirectError)
+        end
+      end
+
+      context 'to another path with the wp-admin/install.php in the query' do
+        let(:redirection) { "#{target_url}index.php?a=/wp-admin/install.php" }
+
+        it 'raises a error' do
+          expect { core.before_scan }.to raise_error(CMSScanner::HTTPRedirectError)
+        end
       end
     end
 
