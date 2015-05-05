@@ -19,13 +19,14 @@ describe WPScan::Finders::PluginVersion::Base do
       end
     end
 
-    # Dynamic Finders are not included here
+    # Dynamic Version Finders are not tested here but should be included if they exist
+    # e.g with the revslider
     context 'when specific finders' do
       {
         'sitepress-multilingual-cms' => %w(VersionParameter MetaGenerator),
         'w3-total-cache' => %w(Headers),
-        'LayerSlider' => %w(TranslationFile)
-        # 'revslider' => %w(ReleaseLog)
+        'LayerSlider' => %w(TranslationFile),
+        'revslider' => %w(ReleaseLog Comments)
       }.each do |plugin_name, specific_finders|
         context "when #{plugin_name} plugin" do
           let(:name) { plugin_name }
