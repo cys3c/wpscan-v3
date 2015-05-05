@@ -25,6 +25,7 @@ describe WPScan::Finders::PluginVersion::Base do
         'sitepress-multilingual-cms' => %w(VersionParameter MetaGenerator),
         'w3-total-cache' => %w(Headers),
         'LayerSlider' => %w(TranslationFile)
+        # 'revslider' => %w(ReleaseLog)
       }.each do |plugin_name, specific_finders|
         context "when #{plugin_name} plugin" do
           let(:name) { plugin_name }
