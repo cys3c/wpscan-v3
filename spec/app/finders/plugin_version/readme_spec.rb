@@ -28,7 +28,9 @@ describe WPScan::Finders::PluginVersion::Readme do
 
     after do
       stub_request(:get, /.*/).to_return(status: 404)
-      stub_request(:get, readme_url).to_return(body: File.read(File.join(fixtures, @file)))
+      stub_request(:get, readme_url).to_return(
+        body: File.read(File.join(fixtures, @file), encoding: 'utf-8')
+      )
 
       expect(finder.aggressive).to eql @expected
     end
