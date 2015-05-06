@@ -31,7 +31,7 @@ module WPScan
     # @return [ Theme ]
     def parent_theme
       return unless template
-      return unless style_body =~ /^@import\surl\(["']?([^"'\)]+)["']?\);$/i
+      return unless style_body =~ /^@import\surl\(["']?([^"'\)]+)["']?\);\r?$/i
 
       opts = detection_opts.merge(
         style_url: url(Regexp.last_match[1]),

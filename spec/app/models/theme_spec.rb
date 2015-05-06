@@ -122,16 +122,22 @@ describe WPScan::Theme do
           .to_return(body: File.read(File.join(fixtures, 'style.css')))
       end
 
-      it 'returns the expected theme' do
-        parent = theme.parent_theme
+      %w(child_style windows_line_endings).each do |fixture|
+        context "when #{fixture}" do
+          let(:main_theme) { "#{fixture}.css" }
 
-        expect(parent).to eql described_class.new(
-          'twentyfourteen', target,
-          style_url: parent_url,
-          confidence: 100,
-          found_by: 'Parent Themes (Passive Detection)'
-        )
-        expect(parent.style_url).to eql parent_url
+          it 'returns the expected theme' do
+            parent = theme.parent_theme
+
+            expect(parent).to eql described_class.new(
+              'twentyfourteen', target,
+              style_url: parent_url,
+              confidence: 100,
+              found_by: 'Parent Themes (Passive Detection)'
+            )
+            expect(parent.style_url).to eql parent_url
+          end
+        end
       end
     end
   end
