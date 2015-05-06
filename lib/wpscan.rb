@@ -18,6 +18,8 @@ require 'wpscan/controller'
 require 'wpscan/controllers'
 require 'wpscan/vulnerability'
 
+Encoding.default_external = Encoding::UTF_8
+
 # WPScan
 module WPScan
   include CMSScanner
