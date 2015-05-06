@@ -24,18 +24,12 @@ Our Contact Form plugin is full of features that no other wordpress contact form
 *  Take your autoresponders to the next level, and ask your contact to join your email list.
 *  Setup a custom success message or URL for your contact form
 *  Each form has built in ROI tracking
-*  Increases conversion: Include a custom â€œContactâ€ tab to the side of your wordpress blog that pops up your contact form.
 *  ...these features will always be free, but go to the next level and get many more features for your contact form!
 
 = More than a Contact Form =
 
 Behind the AWebVoice wordpress plugin contact form is a suite of online tools to effectively manage all of your leads, contacts, and marketing ROI needs.  As leads come in from your contact form, those contacts are automatically added to your online contacts database. From there, access information about each contact, send emails to each contact, and fully track, organize, and manage your communications. AWebVoice.com is designed to scale from single person offices to Fortune 500 companies -- and it is created on the very largest online database has to offer.
 
-
-= And it is easy to get start =
-
-AWebVoice.comâ€™s contact form is FREE and is the easiest wordpress contact form to use.  We think you will agree, give it a try sign up now:
-www.awebvoice.com.
 
 == Installation ==
 
