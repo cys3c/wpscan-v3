@@ -92,65 +92,23 @@ describe WPScan::Finders::PluginVersion::Readme do
     end
 
     context 'when parsing the changelog for version numbers' do
-      it 'returns it' do
-        @file     = 'changelog_version.txt'
-        @expected = [changelog_section('1.3')]
-      end
-    end
-
-    context 'when parsing the changelog for version numbers' do
-      it 'returns it' do
-        @file     = 'wp_polls.txt'
-        @expected = [changelog_section('2.64')]
-      end
-    end
-
-    context 'when parsing the changelog for version numbers' do
-      it 'returns it' do
-        @file     = 'nextgen_gallery.txt'
-        @expected = [changelog_section('2.0.66.33')]
-      end
-    end
-
-    context 'when parsing the changelog for version numbers' do
-      it 'returns it' do
-        @file     = 'wp_user_frontend.txt'
-        @expected = [changelog_section('1.2.3')]
-      end
-    end
-
-    context 'when parsing the changelog for version numbers' do
-      it 'returns it' do
-        @file     = 'my_calendar.txt'
-        @expected = [changelog_section('2.1.5')]
-      end
-    end
-
-    context 'when parsing the changelog for version numbers' do
-      it 'returns it' do
-        @file     = 'nextgen_gallery_2.txt'
-        @expected = [changelog_section('1.9.13')]
-      end
-    end
-
-    context 'when parsing the changelog for version numbers' do
-      it 'returns it' do
-        @file     = 'advanced-most-recent-posts-mod.txt'
-        @expected = [changelog_section('1.6.5.2')]
-      end
-    end
-
-    context 'when parsing the changelog for version numbers' do
-      it 'returns it' do
-        @file     = 'a-lead-capture-contact-form-and-tab-button-by-awebvoicecom.txt'
-        @expected = [changelog_section('3.1')]
-      end
-    end
-
-    context 'when parsing the changelog for version numbers' do
-      it 'returns it' do
-        @file     = 'backup-scheduler.txt'
-        @expected = [changelog_section('1.5.9')]
+      {
+        'changelog_version' => '1.3',
+        'wp_polls' => '2.64',
+        'nextgen_gallery' => '2.0.66.33',
+        'wp_user_frontend' => '1.2.3',
+        'my_calendar' => '2.1.5',
+        'nextgen_gallery_2' => '1.9.13',
+        'advanced-most-recent-posts-mod' => '1.6.5.2',
+        'a-lead-capture-contact-form-and-tab-button-by-awebvoicecom' => '3.1',
+        'backup-scheduler' => '1.5.9'
+      }. each do |file, version_number|
+        context "whith #{file}.txt" do
+          it 'returns the expected version' do
+            @file = "#{file}.txt"
+            @expected = [changelog_section(version_number)]
+          end
+        end
       end
     end
   end
