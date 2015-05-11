@@ -9,10 +9,11 @@ Gem::Specification.new do |s|
   s.platform              = Gem::Platform::RUBY
   s.required_ruby_version = '>= 2.1.0'
   s.authors               = ['WPScanTeam']
+  s.date                  = Time.now.utc.strftime('%Y-%m-%d')
   s.email                 = ['wpscanteam@gmail.com']
   s.summary               = 'WPScan Gem - Experimental'
   s.description           = 'Future version of WPScan'
-  s.homepage              = 'https://github.com/wpscanteam/wpscan'
+  s.homepage              = 'http://wpscan.org/'
   s.license               = 'Dual'
 
   s.files                 = `git ls-files -z`.split("\x0").reject do |file|
@@ -24,6 +25,8 @@ Gem::Specification.new do |s|
       |\.gitignore
       |\.rubocop.yml
       |\.travis.yml
+      |\.ruby-gemset
+      |\.ruby-version
       )$}x
   end
   s.test_files            = []
