@@ -10,8 +10,8 @@
  |     Fixed in: 3.8.2
  |     References:
  |      - https://wpvulndb.com/vulnerabilities/2
- |      - http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2014-0166
- |      - http://osvdb.org/10
+ |      - https://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2014-0166
+ |      - http://osvdb.org/show/osvdb/10
  |      - url-2
  |      - url-3
 

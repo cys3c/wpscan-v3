@@ -9,7 +9,7 @@
  | [!] Title: Timthumb <= 2.8.13 WebShot Remote Code Execution
  |     Fixed in: 2.8.14
  |     References:
- |      - http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2014-4663
+ |      - https://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2014-4663
  |      - http://seclists.org/fulldisclosure/2014/Jun/117
  |      - https://github.com/wpscanteam/wpscan/issues/519
  |
