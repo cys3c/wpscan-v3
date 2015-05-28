@@ -16,7 +16,7 @@ module WPScan
               number,
               found_by: 'Meta Generator (Passive detection)',
               confidence: 80,
-              interesting_entries: ["#{target.url}, #{node}"]
+              interesting_entries: ["#{target.url}, Match: '#{node}'"]
             )
           end
           nil

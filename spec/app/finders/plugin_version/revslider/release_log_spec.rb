@@ -34,7 +34,7 @@ describe WPScan::Finders::PluginVersion::Revslider::ReleaseLog do
           '4.6.5',
           found_by: 'Release Log (Aggressive Detection)',
           confidence: 90,
-          interesting_entries: ["#{finder.release_log_url}, Version 4.6.5 SkyWood (02nd December 2014)"]
+          interesting_entries: ["#{finder.release_log_url}, Match: 'Version 4.6.5 SkyWood (02nd December 2014)'"]
         )
       end
     end

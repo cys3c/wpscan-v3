@@ -40,7 +40,7 @@ describe WPScan::Finders::WpVersion::Readme do
           confidence: 90,
           found_by: 'Readme (Aggressive Detection)',
           interesting_entries: [
-            "#{readme_url}, Version 4.0"
+            "#{readme_url}, Match: 'Version 4.0'"
           ]
         )
       end

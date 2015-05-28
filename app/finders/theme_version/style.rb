@@ -34,7 +34,7 @@ module WPScan
             Regexp.last_match[1],
             found_by: found_by,
             confidence: 80,
-            interesting_entries: ["#{target.style_url}, #{Regexp.last_match}"]
+            interesting_entries: ["#{target.style_url}, Match: '#{Regexp.last_match}'"]
           )
         end
       end

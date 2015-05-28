@@ -19,7 +19,7 @@ module WPScan
             number,
             found_by: 'Readme (Aggressive Detection)',
             confidence: 90,
-            interesting_entries: ["#{readme_url}, #{node.text.to_s.strip}"]
+            interesting_entries: ["#{readme_url}, Match: '#{node.text.to_s.strip}'"]
           )
         end
       end

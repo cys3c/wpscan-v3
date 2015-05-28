@@ -46,7 +46,7 @@ describe WPScan::Finders::PluginVersion::LayerSlider::TranslationFile do
             '4.5.5',
             found_by: 'Translation File (Aggressive Detection)',
             confidence: 90,
-            interesting_entries: ["#{stubbed_url}, Project-Id-Version: LayerSlider WP v4.5.5"]
+            interesting_entries: ["#{stubbed_url}, Match: 'Project-Id-Version: LayerSlider WP v4.5.5'"]
           )
         end
       end
@@ -59,7 +59,7 @@ describe WPScan::Finders::PluginVersion::LayerSlider::TranslationFile do
             '5.2.0',
             found_by: 'Translation File (Aggressive Detection)',
             confidence: 90,
-            interesting_entries: ["#{stubbed_url}, Project-Id-Version: LayerSlider WP 5.2.0"]
+            interesting_entries: ["#{stubbed_url}, Match: 'Project-Id-Version: LayerSlider WP 5.2.0'"]
           )
         end
       end

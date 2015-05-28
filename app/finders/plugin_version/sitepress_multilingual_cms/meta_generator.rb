@@ -15,7 +15,7 @@ module WPScan
                 Regexp.last_match(1),
                 found_by: 'Meta Generator (Passive detection)',
                 confidence: 50,
-                interesting_entries: ["#{target.target.url}, #{node}"]
+                interesting_entries: ["#{target.target.url}, Match: '#{node}'"]
               )
             end
             nil

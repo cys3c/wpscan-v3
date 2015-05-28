@@ -40,7 +40,7 @@ describe WPScan::Finders::WpVersion::MetaGenerator do
             confidence: 80,
             found_by: 'Meta Generator (Passive detection)',
             interesting_entries: [
-              "http://ex.lo/, <meta name=\"generator\" content=\"WordPress 4.0\">"
+              "http://ex.lo/, Match: '<meta name=\"generator\" content=\"WordPress 4.0\">'"
             ]
           )
         end

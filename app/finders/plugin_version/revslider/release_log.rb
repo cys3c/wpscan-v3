@@ -19,7 +19,7 @@ module WPScan
                 Regexp.last_match[1],
                 found_by: found_by,
                 confidence: 90,
-                interesting_entries: ["#{release_log_url}, #{Regexp.last_match}"]
+                interesting_entries: ["#{release_log_url}, Match: '#{Regexp.last_match}'"]
               )
             end
             nil

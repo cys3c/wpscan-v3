@@ -12,7 +12,7 @@ module WPScan
               match[1],
               found_by: 'OPML Generator (Aggressive Detection)',
               confidence: 80,
-              interesting_entries: ["#{target.url('wp-links-opml.php')}, #{node}"]
+              interesting_entries: ["#{target.url('wp-links-opml.php')}, Match: '#{node}'"]
             )
           end
           nil

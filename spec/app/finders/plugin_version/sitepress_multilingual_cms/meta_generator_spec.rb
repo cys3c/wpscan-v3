@@ -40,7 +40,7 @@ describe WPScan::Finders::PluginVersion::SitepressMultilingualCms::MetaGenerator
             confidence: 50,
             found_by: 'Meta Generator (Passive detection)',
             interesting_entries: [
-              "http://wp.lab/, <meta name=\"generator\" content=\"WPML ver:3.1.8.4 stt:1,63;0\">"
+              "http://wp.lab/, Match: '<meta name=\"generator\" content=\"WPML ver:3.1.8.4 stt:1,63;0\">'"
             ]
           )
         end

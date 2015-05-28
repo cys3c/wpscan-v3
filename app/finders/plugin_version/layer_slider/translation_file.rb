@@ -19,7 +19,7 @@ module WPScan
                 Regexp.last_match[1],
                 found_by: 'Translation File (Aggressive Detection)',
                 confidence: 90,
-                interesting_entries: ["#{url}, #{Regexp.last_match}"]
+                interesting_entries: ["#{url}, Match: '#{Regexp.last_match}'"]
               )
             end
             nil

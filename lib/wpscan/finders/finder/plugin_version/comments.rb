@@ -10,7 +10,7 @@ module WPScan
                 match[1],
                 found_by: found_by,
                 confidence: 80,
-                interesting_entries: ["#{target.target.url}, #{match}"]
+                interesting_entries: ["#{target.target.url}, Match: '#{match}'"]
               )
             end
           end

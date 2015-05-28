@@ -44,7 +44,7 @@ describe WPScan::Finders::WpVersion::OpmlGenerator do
           confidence: 80,
           found_by: 'OPML Generator (Aggressive Detection)',
           interesting_entries: [
-            "#{opml_url}, <!-- generator=\"WordPress/4.0\" -->"
+            "#{opml_url}, Match: '<!-- generator=\"WordPress/4.0\" -->'"
           ]
         )
       end

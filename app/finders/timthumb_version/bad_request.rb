@@ -12,7 +12,7 @@ module WPScan
             Regexp.last_match[2],
             found_by: 'Bad Request (Aggressive Detection)',
             confidence: 90,
-            interesting_entries: ["#{target.url}, #{Regexp.last_match[1]}"]
+            interesting_entries: ["#{target.url}, Match: '#{Regexp.last_match[1]}'"]
           )
         end
       end
