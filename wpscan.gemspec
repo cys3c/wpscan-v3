@@ -33,7 +33,7 @@ Gem::Specification.new do |s|
   s.executables           = s.files.grep(%r{^bin/}) { |f| File.basename(f) }
   s.require_path          = 'lib'
 
-  s.add_dependency 'cms_scanner', '~> 0.0.29'
+  s.add_dependency 'cms_scanner', '~> 0.0.30'
   # DB dependencies
   s.add_dependency 'dm-core', '~> 1.2'
   s.add_dependency 'dm-migrations', '~> 1.2'
@@ -44,7 +44,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rspec', '~> 3.2'
   s.add_development_dependency 'rspec-its', '~> 1.2'
   s.add_development_dependency 'bundler', '~> 1.6'
-  s.add_development_dependency 'rubocop', '~> 0.30'
+  s.add_development_dependency 'rubocop', '~> 0.31'
   s.add_development_dependency 'webmock', '~> 1.21'
   s.add_development_dependency 'simplecov', '~> 0.10'
 end
