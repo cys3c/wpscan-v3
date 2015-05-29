@@ -1,12 +1,13 @@
 require_relative 'interesting_findings/readme'
+require_relative 'interesting_findings/multisite'
 require_relative 'interesting_findings/debug_log'
-require_relative 'interesting_findings/full_path_disclosure'
 require_relative 'interesting_findings/backup_db'
+require_relative 'interesting_findings/mu_plugins'
+require_relative 'interesting_findings/registration'
+require_relative 'interesting_findings/tmm_db_migrate'
+require_relative 'interesting_findings/full_path_disclosure'
 require_relative 'interesting_findings/duplicator_installer_log'
 require_relative 'interesting_findings/upload_directory_listing'
-require_relative 'interesting_findings/mu_plugins'
-require_relative 'interesting_findings/multisite'
-require_relative 'interesting_findings/registration'
 
 module WPScan
   module Finders
@@ -19,7 +20,7 @@ module WPScan
 
           %w(
             Readme DebugLog FullPathDisclosure BackupDB DuplicatorInstallerLog
-            Multisite MuPlugins Registration UploadDirectoryListing
+            Multisite MuPlugins Registration UploadDirectoryListing TmmDbMigrate
           ).each do |f|
             finders << InterestingFindings.const_get(f).new(target)
           end

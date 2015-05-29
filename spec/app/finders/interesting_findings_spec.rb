@@ -9,7 +9,7 @@ describe WPScan::Finders::InterestingFindings::Base do
     let(:expected) do
       %w(
         Readme DebugLog FullPathDisclosure
-        Multisite MuPlugins Registration UploadDirectoryListing
+        Multisite MuPlugins Registration UploadDirectoryListing TmmDbMigrate
       )
     end
 
