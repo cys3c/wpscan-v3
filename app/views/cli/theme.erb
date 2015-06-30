@@ -6,10 +6,10 @@
  | Changelog: <%= @theme.changelog_url %>
 <% end -%>
 <% if @theme.directory_listing? -%>
- | <%= red('[!]') %> Directory listing is enabled
+ | <%= critical_icon %> Directory listing is enabled
 <% end -%>
 <% if @theme.error_log? -%>
- | <%= red('[!]') %> An error log file has been found: <%= @theme.url('error_log') %>
+ | <%= critical_icon %> An error log file has been found: <%= @theme.url('error_log') %>
 <% end -%>
  | Style URL: <%= @theme.style_url %>
 <% if @theme.style_name -%>

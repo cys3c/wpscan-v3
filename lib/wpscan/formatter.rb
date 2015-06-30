@@ -8,7 +8,7 @@ module WPScan
       # @return [ Array<String> ]
       def views_directories
         unless @views_directories
-          @views_directories = super << Pathname.new(WPScan::APP_DIR).join('views').to_s
+          @views_directories = super
 
           [Dir.home, Dir.pwd].each do |path|
             @views_directories << Pathname.new(path).join('.wpscan', 'views').to_s

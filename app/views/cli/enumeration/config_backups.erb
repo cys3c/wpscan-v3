@@ -1,11 +1,11 @@
 
 <% if @config_backups.empty? -%>
-<%= blue('[i]') %> No Backups Found.
+<%= notice_icon %> No Backups Found.
 <% else -%>
-<%= blue('[i]') %> Backup(s) Identified:
+<%= notice_icon %> Backup(s) Identified:
 <% @config_backups.each do |config_backup| -%>
 
-<%= green('[+]') %> <%= config_backup %>
+<%= info_icon %> <%= config_backup %>
 <%= render('@finding', item: config_backup) -%>
 <% end -%>
 <% end %>

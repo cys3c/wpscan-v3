@@ -1,11 +1,11 @@
 
 <% if @timthumbs.empty? -%>
-<%= blue('[i]') %> No Timthumbs Found.
+<%= notice_icon %> No Timthumbs Found.
 <% else -%>
-<%= blue('[i]') %> Timthumb(s) Identified:
+<%= notice_icon %> Timthumb(s) Identified:
 <% @timthumbs.each do |timthumb| -%>
 
-<%= green('[+]') %> <%= timthumb %>
+<%= info_icon %> <%= timthumb %>
 <%= render('@finding', item: timthumb) -%>
  |
 <% if timthumb.version -%>

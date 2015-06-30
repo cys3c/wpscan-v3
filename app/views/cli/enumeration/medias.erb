@@ -1,11 +1,11 @@
 
 <% if @medias.empty? -%>
-<%= blue('[i]') %> No Medias Found.
+<%= notice_icon %> No Medias Found.
 <% else -%>
-<%= blue('[i]') %> Medias(s) Identified:
+<%= notice_icon %> Medias(s) Identified:
 <% @medias.each do |media| -%>
 
-<%= green('[+]') %> <%= media %>
+<%= info_icon %> <%= media %>
 <%= render('@finding', item: media) -%>
 <% end -%>
 <% end %>

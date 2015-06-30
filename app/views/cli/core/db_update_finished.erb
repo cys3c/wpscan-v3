@@ -1,8 +1,8 @@
 <% if @verbose && !@updated.empty? -%>
-<%= blue('[i]') %> File(s) Updated:
+<%= notice_icon %> File(s) Updated:
 <% @updated.each do |file| -%>
  |  <%= file %>
 <% end -%>
 <% end -%>
-<%= blue('[i]') %> Update completed.
+<%= notice_icon %> Update completed.
 

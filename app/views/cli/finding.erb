@@ -21,7 +21,7 @@
 <% if @item.respond_to?(:vulnerabilities) && !(vulns = @item.vulnerabilities).empty? -%>
 <% vulns_size = vulns.size -%>
  |
- | <%= red('[!]') %> <%= vulns_size %> <%= vulns_size == 1 ? 'vulnerability' : 'vulnerabilities' %> identified:
+ | <%= critical_icon %> <%= vulns_size %> <%= vulns_size == 1 ? 'vulnerability' : 'vulnerabilities' %> identified:
  |
 <% vulns.each_with_index do |vulnerability, index| -%>
 <%= render('@vulnerability', v: vulnerability) -%>
