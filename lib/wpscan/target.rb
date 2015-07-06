@@ -5,6 +5,19 @@ module WPScan
   class Target < CMSScanner::Target
     include Platform::WordPress
 
+    # @return [ Boolean ]
+    def vulnerable?
+      [@wp_version, @main_theme, @plugins, @themes, @timthumbs].each do |e|
+        [*e].each { |ae| return true if ae.vulnerable? }
+      end
+
+      return true unless [*@config_backups].empty?
+
+      [*@users].each { |u| return true if u.password }
+
+      false
+    end
+
     # @param [ Hash ] opts
     #
     # @return [ WpVersion, false ] The WpVersion found or false if not detected

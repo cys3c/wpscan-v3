@@ -40,4 +40,48 @@ describe WPScan::Target do
       end
     end
   end
+
+  describe '#vulnerable?' do
+    context 'when all attributes are nil' do
+      it { should_not be_vulnerable }
+    end
+
+    context 'when wp_version found' do
+      context 'when not vulnerable' do
+        before { target.instance_variable_set(:@wp_version, WPScan::WpVersion.new('4.1')) }
+
+        it { should_not be_vulnerable }
+      end
+
+      context 'when vulnerable' do
+        before { target.instance_variable_set(:@wp_version, WPScan::WpVersion.new('3.8.1')) }
+
+        it { should be_vulnerable }
+      end
+    end
+
+    context 'when config_backups' do
+      before do
+        target.instance_variable_set(:@config_backups, [WPScan::ConfigBackup.new(target.url('/a-file-url'))])
+      end
+
+      it { should be_vulnerable }
+    end
+
+    context 'when users' do
+      before do
+        target.instance_variable_set(:@users, [WPScan::User.new('u1'), WPScan::User.new('u2')])
+      end
+
+      context 'when no passwords' do
+        it { should_not be_vulnerable }
+      end
+
+      context 'when at least one password has been found' do
+        before { target.users[1].password = 'owned' }
+
+        it { should be_vulnerable }
+      end
+    end
+  end
 end
