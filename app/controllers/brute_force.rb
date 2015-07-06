@@ -5,8 +5,9 @@ module WPScan
       def cli_options
         [
           OptFilePath.new(
-            ['--passwords FILE-PATH', '-P', 'List of passwords to use during the brute forcing. ' \
-                                            'If no --username/s option supplied, user enumeration will be run'],
+            ['--passwords FILE-PATH', '-P',
+             'List of passwords to use during the brute forcing.',
+             'If no --username/s option supplied, user enumeration will be run'],
             exists: true
           ),
           OptString.new(['--username USERNAME', '-u', 'The username to brute force']),

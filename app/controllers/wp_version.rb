@@ -7,8 +7,8 @@ module WPScan
           OptBoolean.new(['--wp-version-all', 'Check all the version locations']),
           OptChoice.new(
             ['--wp-version-detection MODE',
-             'Use the supplied mode for the WordPress version detection, instead of the ' \
-             'global (--detection-mode) mode. Modes: mixed, passive, aggressive'],
+             'Use the supplied mode for the WordPress version detection, ' \
+             'instead of the global (--detection-mode) mode.'],
             choices: %w(mixed passive aggressive),
             normalize: :to_sym
           )

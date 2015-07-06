@@ -12,7 +12,7 @@ module WPScan
       def cli_enum_choices
         [
           OptMultiChoices.new(
-            ['--enumerate [OPTS]', '-e'],
+            ['--enumerate [OPTS]', '-e', 'Enumeration Process'],
             choices: {
               vp: OptBoolean.new(['--vulnerable-plugins']),
               ap: OptBoolean.new(['--all-plugins']),
@@ -22,20 +22,17 @@ module WPScan
               t:  OptBoolean.new(['--themes']),
               tt: OptBoolean.new(['--timthumbs']),
               cb: OptBoolean.new(['--config-backups']),
-              u:  OptIntegerRange.new(['--users'], value_if_empty: '1-10'),
-              m:  OptIntegerRange.new(['--medias'], value_if_empty: '1-100')
+              u:  OptIntegerRange.new(['--users', 'User ids range. e.g: u1-5'], value_if_empty: '1-10'),
+              m:  OptIntegerRange.new(['--medias', 'Media ids range. e.g m1-15'], value_if_empty: '1-100')
             },
             value_if_empty: 'vp,vt,tt,cb,u,m',
-            incompatible: [
-              [:vulnerable_plugins, :all_plugins, :plugins],
-              [:vulnerable_themes, :all_themes, :themes]
-            ]
+            incompatible: [[:vp, :ap, :p], [:vt, :at, :t]]
           ),
           OptRegexp.new(
             [
               '--exclude-content-based REGEXP_OR_STRING',
-              'Exclude all responses having their body matching (case insensitive) during some ' \
-              'parts of the enumeration. Regexp delimiters are not required.'
+              'Exclude all responses having their body matching (case insensitive) during parts of the enumeration.',
+              'Regexp delimiters are not required.'
             ], options: Regexp::IGNORECASE
           )
         ]
@@ -48,8 +45,7 @@ module WPScan
           OptFilePath.new(['--plugins-list FILE-PATH', 'List of plugins\' location to use'], exists: true),
           OptChoice.new(
             ['--plugins-detection MODE',
-             'Use the supplied mode to enumerate Plugins, instead of the ' \
-             'global (--detection-mode) mode. Modes: mixed, passive, aggressive'],
+             'Use the supplied mode to enumerate Plugins, instead of the global (--detection-mode) mode.'],
             choices: %w(mixed passive aggressive), normalize: :to_sym
           ),
           OptBoolean.new(['--plugins-version-all', 'Check all the plugins version locations'])
@@ -62,8 +58,7 @@ module WPScan
           OptFilePath.new(['--themes-list FILE-PATH', 'List of themes\' location to use'], exists: true),
           OptChoice.new(
             ['--themes-detection MODE',
-             'Use the supplied mode to enumerate Themes, instead of the ' \
-             'global (--detection-mode) mode. Modes: mixed, passive, aggressive'],
+             'Use the supplied mode to enumerate Themes, instead of the global (--detection-mode) mode.'],
             choices: %w(mixed passive aggressive), normalize: :to_sym
           ),
           OptBoolean.new(['--themes-version-all', 'Check all the themes version locations'])
@@ -79,8 +74,7 @@ module WPScan
           ),
           OptChoice.new(
             ['--timthumbs-detection MODE',
-             'Use the supplied mode to enumerate Timthumbs, instead of the ' \
-             'global (--detection-mode) mode. Modes: mixed, passive, aggressive'],
+             'Use the supplied mode to enumerate Timthumbs, instead of the global (--detection-mode) mode.'],
             choices: %w(mixed passive aggressive), normalize: :to_sym
           )
         ]
@@ -95,8 +89,7 @@ module WPScan
           ),
           OptChoice.new(
             ['--config-backups-detection MODE',
-             'Use the supplied mode to enumerate Configs, instead of the ' \
-             'global (--detection-mode) mode. Modes: mixed, passive, aggressive'],
+             'Use the supplied mode to enumerate Configs, instead of the global (--detection-mode) mode.'],
             choices: %w(mixed passive aggressive), normalize: :to_sym
           )
         ]
@@ -107,8 +100,7 @@ module WPScan
         [
           OptChoice.new(
             ['--medias-detection MODE',
-             'Use the supplied mode to enumerate Medias, instead of the ' \
-             'global (--detection-mode) mode. Modes: mixed, passive, aggressive'],
+             'Use the supplied mode to enumerate Medias, instead of the global (--detection-mode) mode.'],
             choices: %w(mixed passive aggressive), normalize: :to_sym
           )
         ]
@@ -124,8 +116,7 @@ module WPScan
           ),
           OptChoice.new(
             ['--users-detection MODE',
-             'Use the supplied mode to enumerate Users, instead of the ' \
-             'global (--detection-mode) mode. Modes: mixed, passive, aggressive'],
+             'Use the supplied mode to enumerate Users, instead of the global (--detection-mode) mode.'],
             choices: %w(mixed passive aggressive), normalize: :to_sym
           )
         ]

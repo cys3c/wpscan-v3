@@ -4,12 +4,10 @@ module WPScan
     class Core < CMSScanner::Controller::Core
       # @return [ Array<OptParseValidator::Opt> ]
       def cli_options
-        [OptURL.new(['--url URL'], required_unless: :update, default_protocol: 'http')] +
+        [OptURL.new(['--url URL', 'The URL of the blog to scan'], required_unless: :update, default_protocol: 'http')] +
           super.drop(1) + # delete the --url from CMSScanner
           [
-            OptChoice.new(['--server SERVER',
-                           'Force the supplied server module to be loaded, '\
-                           'available modules: apache (default), iis, nginx'],
+            OptChoice.new(['--server SERVER', 'Force the supplied server module to be loaded'],
                           choices: %w(apache iis nginx),
                           normalize: [:downcase, :to_sym]),
             OptBoolean.new(['--force', 'Do not check if the target is running WordPress']),
