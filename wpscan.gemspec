@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 2.1.0'
   s.authors               = ['WPScanTeam']
   s.date                  = Time.now.utc.strftime('%Y-%m-%d')
-  s.email                 = ['wpscanteam@gmail.com']
+  s.email                 = ['team@wpscan.org']
   s.summary               = 'WPScan Gem - Experimental'
   s.description           = 'Future version of WPScan'
   s.homepage              = 'http://wpscan.org/'
