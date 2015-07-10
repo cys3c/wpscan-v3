@@ -38,7 +38,7 @@ module WPScan
 
           output('not_fully_configured', url: e.redirect_uri.to_s)
 
-          exit(0)
+          exit(WPScan::ExitCode::VULNERABLE)
         end
 
         DB.init_db

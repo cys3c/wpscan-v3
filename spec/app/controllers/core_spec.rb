@@ -106,6 +106,7 @@ describe WPScan::Controller::Core do
           expect(core.formatter).to receive(:output)
             .with('not_fully_configured', hash_including(url: redirection), 'core').ordered
 
+          # TODO: Would be cool to be able to test the exit code
           expect { core.before_scan }.to raise_error(SystemExit)
         end
       end
