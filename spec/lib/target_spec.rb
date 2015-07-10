@@ -46,6 +46,12 @@ describe WPScan::Target do
       it { should_not be_vulnerable }
     end
 
+    context 'when wp_version is not found' do
+      before { target.instance_variable_set(:@wp_version, false) }
+
+      it { should_not be_vulnerable }
+    end
+
     context 'when wp_version found' do
       context 'when not vulnerable' do
         before { target.instance_variable_set(:@wp_version, WPScan::WpVersion.new('4.1')) }
