@@ -26,6 +26,13 @@ module WPScan
 
   APP_DIR = Pathname.new(__FILE__).dirname.join('..', 'app').expand_path
   DB_DIR  = File.join(Dir.home, '.wpscan', 'db')
+
+  # Override, otherwise it would be returned as 'wp_scan'
+  #
+  # @return [ String ]
+  def self.app_name
+    'wpscan'
+  end
 end
 
 require "#{WPScan::APP_DIR}/app"
