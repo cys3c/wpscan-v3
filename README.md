@@ -30,24 +30,24 @@ Open a terminal and type wpscan --help
 
 The DB is located at ~/.wpscan/db
 
-WPScan can load all options (including the --url) from config files, the following locations are checked (order: first to last):
+WPScan can load all options (including the --url) from files, the following locations are checked (order: first to last):
 
-* ~/.wpscan/config.json
-* ~/.wpscan/config.yml
-* pwd/.wpscan/config.json
-* pwd/.wpscan/config.yml
+* ~/.wpscan/cli_options.json
+* ~/.wpscan/cli_options.yml
+* pwd/.wpscan/cli_options.json
+* pwd/.wpscan/cli_options.yml
 
 If those files exist, options from them will be loaded and overriden if found twice.
 
 e.g:
 
-~/.wpscan/config.yml:
+~/.wpscan/cli_options.yml:
 ```
 proxy: 'http://127.0.0.1:8080'
 verbose: true
 ```
 
-pwd/.wpscan/config.yml:
+pwd/.wpscan/cli_options.yml:
 ```
 proxy: 'socks5://127.0.0.1:9090'
 url: 'http://target.tld'
