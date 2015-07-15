@@ -5,6 +5,7 @@ require_relative 'interesting_findings/backup_db'
 require_relative 'interesting_findings/mu_plugins'
 require_relative 'interesting_findings/registration'
 require_relative 'interesting_findings/tmm_db_migrate'
+require_relative 'interesting_findings/upload_sql_dump'
 require_relative 'interesting_findings/full_path_disclosure'
 require_relative 'interesting_findings/duplicator_installer_log'
 require_relative 'interesting_findings/upload_directory_listing'
@@ -21,6 +22,7 @@ module WPScan
           %w(
             Readme DebugLog FullPathDisclosure BackupDB DuplicatorInstallerLog
             Multisite MuPlugins Registration UploadDirectoryListing TmmDbMigrate
+            UploadSQLDump
           ).each do |f|
             finders << InterestingFindings.const_get(f).new(target)
           end
