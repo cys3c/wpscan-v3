@@ -41,8 +41,7 @@ describe WPScan::Finders::InterestingFindings::UploadSQLDump do
           @expected = WPScan::InterestingFinding.new(
             finder.dump_url,
             confidence: 100,
-            found_by: described_class::DIRECT_ACCESS,
-            to_s: 'SQL Dump'
+            found_by: described_class::DIRECT_ACCESS
           )
         end
       end

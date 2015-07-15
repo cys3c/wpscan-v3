@@ -15,8 +15,7 @@ module WPScan
           WPScan::InterestingFinding.new(
             url,
             confidence: 100,
-            found_by: DIRECT_ACCESS,
-            to_s: 'SQL Dump'
+            found_by: DIRECT_ACCESS
           )
         end
 
