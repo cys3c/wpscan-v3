@@ -17,7 +17,7 @@ module WPScan
               confidence: 70,
               found_by: 'URLs In Homepage (Passive Detection)',
               to_s: "This site has 'Must Use Plugins': #{url}",
-              references: %w(http://codex.wordpress.org/Must_Use_Plugins)
+              references: { url: 'http://codex.wordpress.org/Must_Use_Plugins' }
             )
           end
           nil
@@ -39,7 +39,7 @@ module WPScan
             confidence: 80,
             found_by: DIRECT_ACCESS,
             to_s: "This site has 'Must Use Plugins': #{url}",
-            references: %w(http://codex.wordpress.org/Must_Use_Plugins)
+            references: { url: 'http://codex.wordpress.org/Must_Use_Plugins' }
           )
         end
       end

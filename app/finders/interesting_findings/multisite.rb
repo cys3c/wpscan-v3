@@ -20,7 +20,7 @@ module WPScan
             confidence: 100,
             found_by: DIRECT_ACCESS,
             to_s: 'This site seems to be a multisite',
-            references: %w(http://codex.wordpress.org/Glossary#Multisite)
+            references: { url: 'http://codex.wordpress.org/Glossary#Multisite' }
           )
         end
       end

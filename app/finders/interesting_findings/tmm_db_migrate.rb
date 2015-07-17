@@ -15,7 +15,7 @@ module WPScan
             url,
             confidence: 100,
             found_by: DIRECT_ACCESS,
-            references: %w(http://packetstormsecurity.com/files/131957/)
+            references: { packetstorm: 131_957 }
           )
         end
       end

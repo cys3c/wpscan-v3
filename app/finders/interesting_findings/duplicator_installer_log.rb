@@ -14,7 +14,7 @@ module WPScan
             url,
             confidence: 100,
             found_by: DIRECT_ACCESS,
-            references: %w(https://www.exploit-db.com/ghdb/3981/)
+            references: { url: 'https://www.exploit-db.com/ghdb/3981/' }
           )
         end
       end

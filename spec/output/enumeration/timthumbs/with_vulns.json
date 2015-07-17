@@ -15,11 +15,13 @@
             "title": "Timthumb <= 2.8.13 WebShot Remote Code Execution",
             "fixed_in": "2.8.14",
             "references": {
+              "cve": [
+                "2014-4663"
+              ],
               "url": [
                 "http://seclists.org/fulldisclosure/2014/Jun/117",
                 "https://github.com/wpscanteam/wpscan/issues/519"
-              ],
-              "cve": "2014-4663"
+              ]
             }
           },
           {

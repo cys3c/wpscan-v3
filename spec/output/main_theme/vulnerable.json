@@ -33,7 +33,9 @@
             "http://research.evex.pw/?vuln=6",
             "http://packetstormsecurity.com/files/130652/"
           ],
-          "wpvulndb": "7825"
+          "wpvulndb": [
+            "7825"
+          ]
         }
       }
     ],
