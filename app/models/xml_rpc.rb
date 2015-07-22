@@ -1,6 +1,8 @@
 module WPScan
   # Override of the CMSScanner::XMLRPC to include the references
   class XMLRPC < CMSScanner::XMLRPC
+    include References # To be able to use the :wpvulndb reference if needed
+
     # @return [ Hash ]
     def references
       {

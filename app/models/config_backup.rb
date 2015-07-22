@@ -1,5 +1,5 @@
 module WPScan
   # Config Backup
-  class ConfigBackup < CMSScanner::InterestingFinding
+  class ConfigBackup < InterestingFinding
   end
 end

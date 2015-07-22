@@ -1,6 +1,7 @@
 # Gems
 require 'cms_scanner'
 require 'addressable/uri'
+require 'active_support/concern'
 # Standard Lib
 require 'uri'
 require 'securerandom'
@@ -16,6 +17,8 @@ require 'wpscan/finders'
 require 'wpscan/formatter'
 require 'wpscan/controller'
 require 'wpscan/controllers'
+require 'wpscan/references'
+require 'wpscan/vulnerable'
 require 'wpscan/vulnerability'
 
 Encoding.default_external = Encoding::UTF_8

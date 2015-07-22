@@ -1,6 +1,6 @@
 module WPScan
   # Timthumb
-  class Timthumb < CMSScanner::InterestingFinding
+  class Timthumb < InterestingFinding
     include Vulnerable
 
     # Opts used to detect the version

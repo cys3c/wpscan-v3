@@ -1,5 +1,5 @@
 module WPScan
   # Media
-  class Media < CMSScanner::InterestingFinding
+  class Media < InterestingFinding
   end
 end
