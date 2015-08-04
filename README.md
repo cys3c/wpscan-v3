@@ -1,4 +1,4 @@
-# WPScan - Test
+# WPScan
 
 WPSCan v3 - Experimental Repo
 
