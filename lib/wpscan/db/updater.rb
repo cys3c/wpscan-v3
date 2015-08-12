@@ -37,6 +37,7 @@ module WPScan
           ssl_verifypeer: true,
           timeout: 300,
           connecttimeout: 120,
+          accept_encoding: 'gzip, deflate',
           cache_ttl: 0
         }
       end
