@@ -7,6 +7,9 @@
 
 <%= info_icon %> <%= plugin %>
  | Location: <%= plugin.url %>
+<% if plugin.latest_version -%>
+ | Latest Version: <%= plugin.latest_version %>
+<% end -%>
 <% if plugin.readme_url -%>
  | Readme: <%= plugin.readme_url %>
 <% end -%>

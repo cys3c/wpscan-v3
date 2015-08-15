@@ -28,12 +28,12 @@ module WPScan
         #
         # @return [ Hash ]
         def target_urls(opts = {})
-          names       = opts[:list] ? File.open(opts[:list]) : DB::Themes.vulnerable_slugs
+          names       = opts[:list] || DB::Themes.vulnerable_slugs
           urls        = {}
           themes_url  = target.url('wp-content/themes/')
 
           names.each do |name|
-            urls["#{themes_url}#{URI.encode(name.chomp)}/"] = name.chomp
+            urls["#{themes_url}#{URI.encode(name)}/"] = name
           end
 
           urls

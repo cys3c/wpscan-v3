@@ -1,4 +1,7 @@
  | Location: <%= @theme.url %>
+<% if @theme.latest_version -%>
+ | Latest Version: <%= @theme.latest_version %>
+<% end -%>
 <% if @theme.readme_url -%>
  | Readme: <%= @theme.readme_url %>
 <% end -%>

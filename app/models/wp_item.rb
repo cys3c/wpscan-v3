@@ -56,6 +56,17 @@ module WPScan
       version < vuln.fixed_in ? true : false
     end
 
+    # @return [ String ]
+    def latest_version
+      db_data['latest_version']
+    end
+
+    # Not used anywhere ATM
+    # @return [ Boolean ]
+    def popular?
+      db_data['popular']
+    end
+
     # URI.encode is preferered over Addressable::URI.encode as it will encode
     # leading # character:
     # URI.encode('#t#') => %23t%23

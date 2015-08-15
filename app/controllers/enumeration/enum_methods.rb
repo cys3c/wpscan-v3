@@ -55,17 +55,18 @@ module WPScan
 
       # @param [ Hash ] opts
       #
-      # @return [ String, nil ] The plugins list from the options
+      # @return [ Array<String> ] The plugins list associated to the cli options
       def plugins_list_from_opts(opts)
-        return opts[:plugins_list] if opts[:plugins_list]
+        # List file provided by the user via the cli
+        return File.open(opts[:plugins_list]).map(&:chomp) if opts[:plugins_list]
 
         if opts[:enumerate][:all_plugins]
-          db_file = 'plugins_full.txt'
-        elsif opts[:enumerate][:plugins] # Most popular plugins
-          db_file = 'plugins.txt'
+          DB::Plugins.all_slugs
+        elsif opts[:enumerate][:plugins]
+          DB::Plugins.popular_slugs
+        else
+          DB::Plugins.vulnerable_slugs
         end
-
-        db_file ? File.join(DB_DIR, db_file) : nil
       end
 
       # @param [ Hash ] opts
@@ -93,17 +94,18 @@ module WPScan
 
       # @param [ Hash ] opts
       #
-      # @return [ String, nil ] The plugins list from the options
+      # @return [ Array<String> ] The themes list associated to the cli options
       def themes_list_from_opts(opts)
-        return opts[:themes_list] if opts[:themes_list]
+        # List file provided by the user via the cli
+        return File.open(opts[:themes_list]).map(&:chomp) if opts[:themes_list]
 
         if opts[:enumerate][:all_themes]
-          db_file = 'themes_full.txt'
-        elsif opts[:enumerate][:themes] # Most popular themes
-          db_file = 'themes.txt'
+          DB::Themes.all_slugs
+        elsif opts[:enumerate][:themes]
+          DB::Themes.popular_slugs
+        else
+          DB::Themes.vulnerable_slugs
         end
-
-        db_file ? File.join(DB_DIR, db_file) : nil
       end
 
       def enum_timthumbs

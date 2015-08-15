@@ -5,6 +5,7 @@
   <% @plugins.each_with_index do |plugin, index| -%>
   <%= plugin.name.to_json %>: {
     "location": <%= plugin.url.to_json %>,
+    "latest_version": <%= plugin.latest_version.to_json %>,
     "readme_url": <%= plugin.readme_url.to_json %>,
     "changelog_url": <%= plugin.changelog_url.to_json %>,
     "directory_listing": <%= plugin.directory_listing?.to_json %>,
