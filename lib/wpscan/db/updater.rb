@@ -5,9 +5,7 @@ module WPScan
     class Updater
       # /!\ Might want to also update the Enumeration#cli_options when some filenames are changed here
       FILES = %w(
-        local_vulnerable_files.xml local_vulnerable_files.xsd
-        plugins_full.txt plugins.txt themes_full.txt themes.txt
-        plugin_vulns.json theme_vulns.json wp_vulns.json
+        plugins.json themes.json wordpresses.json
         timthumbs-v3.txt user-agents.txt config_backups.txt
         dynamic_finders.yml wordpress.db LICENSE
       )

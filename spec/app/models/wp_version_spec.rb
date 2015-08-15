@@ -41,25 +41,43 @@ describe WPScan::WpVersion do
       its(:vulnerabilities) { should eql([]) }
     end
 
-    context 'when a signle vuln' do
-      let(:number) { '3.8' }
-
-      it 'returns the expected result' do
-        expected = [WPScan::Vulnerability.new(
-          'WordPress 3.8 - Vuln 3',
-          { url: %w(url-4), osvdb: %w(11), wpvulndb: '3' },
-          'AUTHBYPASS'
-        )]
-
-        expect(version.vulnerabilities).to eq expected
+    context 'when vulnerable' do
+      after do
+        expect(version.vulnerabilities).to eq @expected
         expect(version).to be_vulnerable
       end
-    end
 
-    context 'when multiple vulns' do
-      let(:number) { '3.8.1' }
+      context 'when a signle vuln' do
+        let(:number) { '3.8' }
 
-      xit 'returns the expected results'
+        it 'returns the expected result' do
+          @expected = [WPScan::Vulnerability.new(
+            'WP 3.8 - Vuln 1',
+            { url: %w(url-4), osvdb: %w(11), wpvulndb: '3' },
+            'AUTHBYPASS'
+          )]
+        end
+      end
+
+      context 'when multiple vulns' do
+        let(:number) { '3.8.1' }
+
+        it 'returns the expected results' do
+          @expected = [
+            WPScan::Vulnerability.new(
+              'WP 3.8.1 - Vuln 1',
+              { wpvulndb: '1' },
+              'SQLI'
+            ),
+            WPScan::Vulnerability.new(
+              'WP 3.8.1 - Vuln 2',
+              { url: %w(url-2 url-3), osvdb: %w(10), cve: %w(2014-0166), wpvulndb: '2' },
+              nil,
+              '3.8.2'
+            )
+          ]
+        end
+      end
     end
   end
 end

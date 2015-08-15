@@ -2,11 +2,14 @@ module WPScan
   # WP Version
   class WpVersion < CMSScanner::Version
     include Vulnerable
+    attr_reader :db_data
 
     def initialize(number, opts = {})
       fail InvalidWordPressVersion unless WpVersion.valid?(number.to_s)
 
       super(number, opts)
+
+      @db_data = DB::Version.db_data(number)
     end
 
     # @param [ String ] number
@@ -30,7 +33,15 @@ module WPScan
 
     # @return [ Array<Vulnerability> ]
     def vulnerabilities
-      DB::Version.vulnerabilities(number)
+      return @vulnerabilities if @vulnerabilities
+
+      @vulnerabilities = []
+
+      [*db_data['vulnerabilities']].each do |json_vuln|
+        @vulnerabilities << Vulnerability.load_from_json(json_vuln)
+      end
+
+      @vulnerabilities
     end
   end
 end

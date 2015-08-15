@@ -2,26 +2,21 @@ module WPScan
   module DB
     # WP Version
     class Version
-      # @return [ String ]
-      def self.vulns_file
-        @vulns_file ||= File.join(DB_DIR, 'wp_vulns.json')
+      def self.db_file
+        @db_file ||= File.join(DB_DIR, 'wordpresses.json')
       end
 
-      def self.vulnerabilities(number)
-        vulnerabilities = []
+      # @param [ String ] identifier The plugin/theme slug or version number
+      #
+      # @return [ Hash ] The JSON data from the DB associated to the identifier
+      def self.db_data(identifier)
+        read_json_file(db_file).each do |json|
+          asset = json['version'] # || json['name']
 
-        read_json_file(vulns_file).each do |item|
-          asset = item[number]
-
-          next unless asset
-
-          asset['vulnerabilities'].each do |json_vuln|
-            vulnerabilities << Vulnerability.load_from_json(json_vuln)
-          end
-          break # no need to iterate any further
+          return json if asset == identifier
         end
 
-        vulnerabilities
+        {} # no item found, empty hash returned
       end
     end
   end
