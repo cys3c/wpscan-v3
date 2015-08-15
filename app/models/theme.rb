@@ -14,6 +14,10 @@ module WPScan
       parse_style
     end
 
+    def load_db_data
+      @db_data = DB::Theme.db_data(name)
+    end
+
     # @param [ Hash ] opts
     #
     # @return [ WPScan::Version, false ]
@@ -21,11 +25,6 @@ module WPScan
       @version = Finders::ThemeVersion::Base.find(self, detection_opts.merge(opts)) if @version.nil?
 
       @version
-    end
-
-    # @return [ Array<Vulneraility> ]
-    def vulnerabilities
-      DB::Theme.vulnerabilities(self)
     end
 
     # @return [ Theme ]

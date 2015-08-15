@@ -28,7 +28,7 @@ module WPScan
         #
         # @return [ Hash ]
         def target_urls(opts = {})
-          names       = opts[:list] ? File.open(opts[:list]) : DB::Plugins.vulnerable_names
+          names       = opts[:list] ? File.open(opts[:list]) : DB::Plugins.vulnerable_slugs
           urls        = {}
           plugins_url = target.plugins_url
 

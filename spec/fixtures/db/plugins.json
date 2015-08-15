@@ -1,0 +1,27 @@
+[
+  {
+    "name": "no-vulns-popular",
+    "vulnerabilities": [],
+    "popular": true,
+    "latest_version": "2.0",
+    "latest_updated": "2015-05-16T00:00:00.000Z"
+  },
+  {
+    "name": "vulnerable-not-popular",
+    "latest_version": "7.0",
+    "latest_updated": "2015-05-16T00:00:00.000Z",
+    "popular": false,
+    "vulnerabilities" : [
+      {
+        "title" : "First Vuln",
+        "fixed_in" : "6.3.10",
+        "id" : 1,
+        "vuln_type": "LFI"
+      },
+      {
+        "title": "No Fixed In",
+        "id": 2
+      }
+    ]
+  }
+]

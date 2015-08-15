@@ -9,7 +9,7 @@ module WPScan
     READMES    = %w(readme.txt README.txt Readme.txt ReadMe.txt README.TXT readme.TXT)
     CHANGELOGS = %w(changelog.txt Changelog.txt ChangeLog.txt CHANGELOG.txt)
 
-    attr_reader :uri, :name, :detection_opts, :target
+    attr_reader :uri, :name, :detection_opts, :target, :db_data
 
     # @param [ String ] name The plugin/theme name
     # @param [ Target ] target The targeted blog
@@ -26,6 +26,34 @@ module WPScan
       @detection_opts = { mode: opts[:mode], confidence_threshold: opts[:version_all] ? 0 : 100 }
 
       parse_finding_options(opts)
+      load_db_data
+    end
+
+    def load_db_data; end
+
+    # @return [ Array<Vulnerabily> ]
+    def vulnerabilities
+      return @vulnerabilities if @vulnerabilities
+
+      @vulnerabilities = []
+
+      [*db_data['vulnerabilities']].each do |json_vuln|
+        vulnerability = Vulnerability.load_from_json(json_vuln)
+        @vulnerabilities << vulnerability if vulnerable_to?(vulnerability)
+      end
+
+      @vulnerabilities
+    end
+
+    # Checks if the wp_item is vulnerable to a specific vulnerability
+    #
+    # @param [ Vulnerability ] vuln Vulnerability to check the item against
+    #
+    # @return [ Boolean ]
+    def vulnerable_to?(vuln)
+      return true unless version && vuln && vuln.fixed_in && !vuln.fixed_in.empty?
+
+      version < vuln.fixed_in ? true : false
     end
 
     # URI.encode is preferered over Addressable::URI.encode as it will encode

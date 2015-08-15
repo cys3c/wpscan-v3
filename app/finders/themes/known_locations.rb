@@ -28,7 +28,7 @@ module WPScan
         #
         # @return [ Hash ]
         def target_urls(opts = {})
-          names       = opts[:list] ? File.open(opts[:list]) : DB::Themes.vulnerable_names
+          names       = opts[:list] ? File.open(opts[:list]) : DB::Themes.vulnerable_slugs
           urls        = {}
           themes_url  = target.url('wp-content/themes/')
 

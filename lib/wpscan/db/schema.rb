@@ -1,7 +1,7 @@
 module WPScan
   module DB
     # WP Version
-    class Version
+    class Version < WpItem
       include DataMapper::Resource
 
       storage_names[:default] = 'versions'

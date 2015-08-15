@@ -1,15 +1,10 @@
 module WPScan
   module DB
     # WP Themes
-    class Themes
+    class Themes < WpItems
       # @return [ String ]
-      def self.vulns_file
-        @vulns_file ||= File.join(DB_DIR, 'theme_vulns.json')
-      end
-
-      # @return [ Array<String> ]
-      def self.vulnerable_names
-        read_json_file(vulns_file).reduce([]) { |a, e| a << e.keys.first }
+      def self.db_file
+        @db_file ||= File.join(DB_DIR, 'themes.json')
       end
     end
   end

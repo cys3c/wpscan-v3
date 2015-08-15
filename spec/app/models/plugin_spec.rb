@@ -84,7 +84,7 @@ describe WPScan::Plugin do
 
     context 'when in the DB' do
       context 'when no vulnerabilities' do
-        let(:name) { 'no-vulns' }
+        let(:name) { 'no-vulns-popular' }
 
         it 'returns an empty array' do
           @expected = []
@@ -92,16 +92,16 @@ describe WPScan::Plugin do
       end
 
       context 'when vulnerabilities' do
-        let(:name) { 'theme-my-login' }
+        let(:name) { 'vulnerable-not-popular' }
         let(:all_vulns) do
           [
             WPScan::Vulnerability.new(
-              'Theme My Login - First Vuln',
+              'First Vuln',
               { wpvulndb: '1' },
               'LFI',
               '6.3.10'
             ),
-            WPScan::Vulnerability.new('Theme My Login - No Fixed In', wpvulndb: '2')
+            WPScan::Vulnerability.new('No Fixed In', wpvulndb: '2')
           ]
         end
 
