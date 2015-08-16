@@ -1,5 +1,6 @@
 {
   "main_theme": {
+    "name": "test",
     "location": "http://ex.lo/wp-content/themes/test/",
     "latest_version": null,
     "readme_url": "http://ex.lo/wp-content/themes/test/readme.txt",
