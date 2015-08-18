@@ -11,7 +11,7 @@ module WPScan
           %w(Comments).each do |klass|
             next unless config[klass]['version']
 
-            constant_name = name.gsub(/-/, '_').camelize
+            constant_name = name.tr('-', '_').camelize
 
             unless Finders::PluginVersion.constants.include?(constant_name.to_sym)
               Finders::PluginVersion.const_set(constant_name, Module.new)

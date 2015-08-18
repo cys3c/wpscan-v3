@@ -79,7 +79,7 @@ describe WPScan::Finders::PluginVersion::Readme do
 
     context 'when version is in a release date format' do
       it 'detects and returns it' do
-        @file   = 's2member.txt'
+        @file     = 's2member.txt'
         @expected = [stable_tag('141007')]
       end
     end

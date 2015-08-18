@@ -95,7 +95,7 @@ module WPScan
 
     # @return [ Symbol ] The Class name associated to the item name
     def classify_name
-      name.to_s.gsub('-', '_').camelize.to_s.to_sym
+      name.to_s.tr('-', '_').camelize.to_s.to_sym
     end
 
     # @return [ String ] The readme url if found

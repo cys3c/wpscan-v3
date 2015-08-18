@@ -77,7 +77,7 @@ describe WPScan::Controller::Enumeration do
           %w(Comments).each do |klass|
             next unless config[klass]['version'] && name != 'rspec-failure'
 
-            constant_name = name.gsub(/-/, '_').camelize
+            constant_name = name.tr('-', '_').camelize
 
             # Will have to change the below if new classes are added
             defined_klass = WPScan::Finders::PluginVersion.const_get("#{constant_name}::Comments")

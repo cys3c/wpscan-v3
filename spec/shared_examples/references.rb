@@ -9,9 +9,8 @@ shared_examples WPScan::References do
 
   describe 'references' do
     context 'when no references' do
-      its(:wpvulndb_ids)     { should eql([]) }
-      its(:wpvulndb_urls) { should eql([]) }
-
+      its(:wpvulndb_ids)    { should eql([]) }
+      its(:wpvulndb_urls)   { should eql([]) }
       its(:references_urls) { should eql([]) }
     end
 

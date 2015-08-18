@@ -88,7 +88,7 @@ shared_examples 'WordPress::CustomDirectories' do
 
       context 'when the path starts with /' do
         it 'does not add it' do
-          @path = '/root'
+          @path     = '/root'
           @expected = "#{url}/root"
         end
       end
@@ -98,7 +98,7 @@ shared_examples 'WordPress::CustomDirectories' do
       before { target.content_dir = 'wp-content' }
 
       it 'does not replace the wp-content' do
-        @path    = 'wp-content/themes/something'
+        @path     = 'wp-content/themes/something'
         @expected = "#{url}/#{@path}"
       end
     end
