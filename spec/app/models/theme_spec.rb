@@ -21,7 +21,7 @@ describe WPScan::Theme do
     its(:style_name)  { should eql 'Twenty Fifteen' }
     its(:style_uri)   { should eql 'https://wordpress.org/themes/twentyfifteen' }
     its(:author)      { should eql 'the WordPress team' }
-    its(:author_uri)  { should eql 'https://wordpress.org/' }
+    its(:author_uri)  { should eql nil }
     its(:template)    { should eql nil }
     its(:description) { should eql 'Our 2015 default theme is clean, blog-focused.' }
     its(:license)     { should eql 'GNU General Public License v2 or later' }

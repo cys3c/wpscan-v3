@@ -74,8 +74,9 @@ describe WPScan::Finders::ThemeVersion::Style do
       'inline' => '1.5.1',
       'firefart' => '1.0.0',
       'tralling_quote' => '1.3',
-      'no_version' => nil,
-      'trunk_version' => nil
+      'no_version_tag' => nil,
+      'trunk_version' => nil,
+      'no_version' => nil
     }.each do |file, expected_version|
       context "when #{file}" do
         let(:style_body) { File.new(File.join(fixtures, "#{file}.css")) }

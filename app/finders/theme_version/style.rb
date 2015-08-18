@@ -28,7 +28,7 @@ module WPScan
 
         # @return [ Version ]
         def style_version
-          return unless Browser.get(target.style_url).body =~ /Version:\s*(?!trunk)([0-9a-z\.-]+)/i
+          return unless Browser.get(target.style_url).body =~ /Version:[\t ]*(?!trunk)([0-9a-z\.-]+)/i
 
           WPScan::Version.new(
             Regexp.last_match[1],

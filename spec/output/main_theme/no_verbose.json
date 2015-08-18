@@ -12,7 +12,7 @@
     "style_uri": "https://wordpress.org/themes/twentyfifteen",
     "description": "Our 2015 default theme is clean, blog-focused.",
     "author": "the WordPress team",
-    "author_uri": "https://wordpress.org/",
+    "author_uri": null,
     "template": null,
     "license": "GNU General Public License v2 or later",
     "license_uri": "http://www.gnu.org/licenses/gpl-2.0.html",

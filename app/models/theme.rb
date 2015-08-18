@@ -86,9 +86,9 @@ module WPScan
     #
     # @return [ String ]
     def parse_style_tag(body, tag)
-      value = body[/^\s*#{Regexp.escape(tag)}:\s*(.*)/i, 1]
+      value = body[/^\s*#{Regexp.escape(tag)}:[\t ]*([^\r\n]+)/i, 1]
 
-      value.strip if value
+      value && !value.strip.empty? ? value.strip : nil
     end
 
     def ==(other)
