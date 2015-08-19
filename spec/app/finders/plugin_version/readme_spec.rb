@@ -101,7 +101,8 @@ describe WPScan::Finders::PluginVersion::Readme do
         'nextgen_gallery_2' => '1.9.13',
         'advanced-most-recent-posts-mod' => '1.6.5.2',
         'a-lead-capture-contact-form-and-tab-button-by-awebvoicecom' => '3.1',
-        'backup-scheduler' => '1.5.9'
+        'backup-scheduler' => '1.5.9',
+        'release_date_slash' => '1.0.4'
       }. each do |file, version_number|
         context "whith #{file}.txt" do
           it 'returns the expected version' do
