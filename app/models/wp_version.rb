@@ -21,13 +21,14 @@ module WPScan
 
     # @return [ Array<String> ] All the version numbers
     def self.all
-      unless @all_numbers
-        @all_numbers = []
+      return @all_numbers if @all_numbers
 
-        DB::Version.all.each do |v|
-          @all_numbers << v.number
-        end
+      @all_numbers = []
+
+      DB::Version.all.each do |v|
+        @all_numbers << v.number
       end
+
       @all_numbers
     end
 
