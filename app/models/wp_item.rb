@@ -26,10 +26,7 @@ module WPScan
       @detection_opts = { mode: opts[:mode], confidence_threshold: opts[:version_all] ? 0 : 100 }
 
       parse_finding_options(opts)
-      load_db_data
     end
-
-    def load_db_data; end
 
     # @return [ Array<Vulnerabily> ]
     def vulnerabilities
@@ -58,13 +55,13 @@ module WPScan
 
     # @return [ String ]
     def latest_version
-      db_data['latest_version']
+      @latest_version ||= db_data['latest_version']
     end
 
     # Not used anywhere ATM
     # @return [ Boolean ]
     def popular?
-      db_data['popular']
+      @popular ||= db_data['popular']
     end
 
     # URI.encode is preferered over Addressable::URI.encode as it will encode

@@ -14,8 +14,9 @@ module WPScan
       parse_style
     end
 
-    def load_db_data
-      @db_data = DB::Theme.db_data(name)
+    # @return [ JSON ]
+    def db_data
+      DB::Theme.db_data(name)
     end
 
     # @param [ Hash ] opts

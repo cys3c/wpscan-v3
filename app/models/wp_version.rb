@@ -8,8 +8,6 @@ module WPScan
       fail InvalidWordPressVersion unless WpVersion.valid?(number.to_s)
 
       super(number, opts)
-
-      @db_data = DB::Version.db_data(number)
     end
 
     # @param [ String ] number
@@ -25,11 +23,14 @@ module WPScan
 
       @all_numbers = []
 
-      DB::Version.all.each do |v|
-        @all_numbers << v.number
-      end
+      DB::Version.all.each { |v| @all_numbers << v.number }
 
       @all_numbers
+    end
+
+    # @return [ JSON ]
+    def db_data
+      DB::Version.db_data(number)
     end
 
     # @return [ Array<Vulnerability> ]

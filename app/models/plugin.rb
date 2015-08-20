@@ -8,8 +8,9 @@ module WPScan
       @uri = Addressable::URI.parse(target.url("wp-content/plugins/#{name}/"))
     end
 
-    def load_db_data
-      @db_data = DB::Plugin.db_data(name)
+    # @return [ JSON ]
+    def db_data
+      DB::Plugin.db_data(name)
     end
 
     # @param [ Hash ] opts
