@@ -6,7 +6,7 @@ module WPScan
         # @return [ WpVersion ]
         def passive(_opts = {})
           Browser.get(target.url).html.css('meta[name="generator"]').each do |node|
-            next unless node.attribute('content').to_s =~ /wordpress (.*)/i
+            next unless node.attribute('content').to_s =~ /wordpress ([0-9\.]+)/i
 
             number = Regexp.last_match(1)
 

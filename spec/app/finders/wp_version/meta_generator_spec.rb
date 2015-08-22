@@ -44,6 +44,22 @@ describe WPScan::Finders::WpVersion::MetaGenerator do
             ]
           )
         end
+
+        context 'when mobile pack format' do
+          let(:body) { File.read(File.join(fixtures, 'mobile_pack.html')) }
+
+          it 'returns the expecetd version' do
+            @expected = WPScan::WpVersion.new(
+              '4.0',
+              confidence: 80,
+              found_by: 'Meta Generator (Passive detection)',
+              interesting_entries: [
+                "http://ex.lo/, Match: '<meta name=\"generator\" content=\"WordPress 4.0, " \
+                "fitted with the WordPress Mobile Pack 1.2.5\">'"
+              ]
+            )
+          end
+        end
       end
     end
   end
