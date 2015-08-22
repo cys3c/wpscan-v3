@@ -33,9 +33,9 @@ Gem::Specification.new do |s|
   s.executables           = s.files.grep(%r{^bin/}) { |f| File.basename(f) }
   s.require_path          = 'lib'
 
+  s.add_dependency 'yajl-ruby', '~> 1.2.1' # Better JSON parser regarding memory usage
   s.add_dependency 'cms_scanner', '~> 0.0.36'
   s.add_dependency 'activesupport', '~> 4.2' # Not sure if needed there as already needed in the CMSScanner
-  s.add_dependency 'yajl-ruby', '~> 1.2.1' # Better JSON parser regarding memory usage
   # DB dependencies
   s.add_dependency 'dm-core', '~> 1.2'
   s.add_dependency 'dm-migrations', '~> 1.2'

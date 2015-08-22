@@ -1,8 +1,8 @@
 # Gems
 require 'cms_scanner'
+require 'yajl/json_gem'
 require 'addressable/uri'
 require 'active_support/concern'
-require 'yajl/json_gem'
 # Standard Lib
 require 'uri'
 require 'securerandom'
