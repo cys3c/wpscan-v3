@@ -1,26 +1,25 @@
-"plugins": [
+"plugins": {
 <% unless @plugins.empty? -%>
 <% last_index = @plugins.size - 1 -%>
 <% @plugins.each_with_index do |plugin, index| -%>
-{
-  "name": <%= plugin.name.to_json %>,
-  "location": <%= plugin.url.to_json %>,
-  "latest_version": <%= plugin.latest_version.to_json %>,
-  "readme_url": <%= plugin.readme_url.to_json %>,
-  "changelog_url": <%= plugin.changelog_url.to_json %>,
-  "directory_listing": <%= plugin.directory_listing?.to_json %>,
-  "error_log_url": <% if plugin.error_log? %><%= plugin.url('error_log').to_json %><% else %>null<% end %>,
-  <%= render('@finding', item: plugin) -%>,
-  <% if plugin.version -%>
-  "version": {
-    "number": <%= plugin.version.to_json %>,
-    "confidence": <%= plugin.version.confidence.to_json %>,
-    <%= render('@finding', item: plugin.version) -%>
-  }
-  <% else -%>
-  "version": null
-  <% end -%>
-}<% unless index == last_index -%>,<% end -%>
+  <%= plugin.name.to_json %>: {
+    "location": <%= plugin.url.to_json %>,
+    "latest_version": <%= plugin.latest_version.to_json %>,
+    "readme_url": <%= plugin.readme_url.to_json %>,
+    "changelog_url": <%= plugin.changelog_url.to_json %>,
+    "directory_listing": <%= plugin.directory_listing?.to_json %>,
+    "error_log_url": <% if plugin.error_log? %><%= plugin.url('error_log').to_json %><% else %>null<% end %>,
+    <%= render('@finding', item: plugin) -%>,
+    <% if plugin.version -%>
+    "version": {
+      "number": <%= plugin.version.to_json %>,
+      "confidence": <%= plugin.version.confidence.to_json %>,
+      <%= render('@finding', item: plugin.version) -%>
+    }
+    <% else -%>
+    "version": null
+    <% end -%>
+  }<% unless index == last_index -%>,<% end -%>
 <% end -%>
 <% end -%>
-],
+},
