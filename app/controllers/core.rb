@@ -45,6 +45,12 @@ module WPScan
 
         load_server_module
 
+        check_wordpress_state
+      end
+
+      # Raises errors if the target is hosted on wordpress.com or is not running WordPress
+      def check_wordpress_state
+        fail WordPressHostedError if target.wordpress_hosted?
         fail NotWordPressError unless target.wordpress? || parsed_options[:force]
       end
 

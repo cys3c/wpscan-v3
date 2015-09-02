@@ -7,6 +7,7 @@ describe WPScan::Controller::Core do
 
   before do
     WPScan::Browser.reset
+    described_class.reset
     described_class.parsed_options = parsed_options
   end
 
@@ -71,19 +72,10 @@ describe WPScan::Controller::Core do
       unless parsed_options[:update]
         expect_any_instance_of(WPScan::DB::Updater).to receive(:missing_files?).and_return(false)
       end
-
-      unless defined?(redirection)
-        expect(core).to receive(:load_server_module)
-        expect(core.target).to receive(:wordpress?).and_return(wordpress?)
-      end
     end
 
-    # TODO: add the case when --url is not supplied
     context 'when --update' do
-      let(:wordpress?)     { true }
-      let(:parsed_options) { super().merge(update: true) }
-
-      it 'calls the formatter when started and finished and update the db' do
+      before do
         expect(core.formatter).to receive(:output)
           .with('db_update_started', hash_including(verbose: nil), 'core').ordered
 
@@ -91,8 +83,27 @@ describe WPScan::Controller::Core do
 
         expect(core.formatter).to receive(:output)
           .with('db_update_finished', hash_including(verbose: nil), 'core').ordered
+      end
 
-        expect { core.before_scan }.to_not raise_error
+      context 'when the --url is not supplied' do
+        let(:parsed_options) { { update: true } }
+
+        it 'calls the formatter when started and finished to update the db and exit' do
+          expect { core.before_scan }.to raise_error(SystemExit)
+        end
+      end
+
+      context 'when --url is supplied' do
+        let(:parsed_options) { super().merge(update: true) }
+
+        before do
+          expect(core).to receive(:load_server_module)
+          expect(core.target).to receive(:wordpress?).and_return(true)
+        end
+
+        it 'calls the formatter when started and finished to update the db' do
+          expect { core.before_scan }.to_not raise_error
+        end
       end
     end
 
@@ -128,8 +139,21 @@ describe WPScan::Controller::Core do
       end
     end
 
+    context 'when hosted on wordpress.com' do
+      let(:target_url) { 'http://ex.wordpress.com' }
+
+      before { expect(core).to receive(:load_server_module) }
+
+      it 'raises an error' do
+        expect { core.before_scan }.to raise_error(WPScan::WordPressHostedError)
+      end
+    end
+
     context 'when wordpress' do
-      let(:wordpress?) { true }
+      before do
+        expect(core).to receive(:load_server_module)
+        expect(core.target).to receive(:wordpress?).and_return(true)
+      end
 
       it 'does not raise any error' do
         expect { core.before_scan }.to_not raise_error
@@ -137,7 +161,10 @@ describe WPScan::Controller::Core do
     end
 
     context 'when not wordpress' do
-      let(:wordpress?) { false }
+      before do
+        expect(core).to receive(:load_server_module)
+        expect(core.target).to receive(:wordpress?).and_return(false)
+      end
 
       context 'when no --force' do
         it 'raises an error' do
