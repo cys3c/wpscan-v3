@@ -1,13 +1,11 @@
-[
-  {
-    "name": "no-vulns-popular",
+{
+  "no-vulns-popular": {
     "vulnerabilities": [],
     "popular": true,
     "latest_version": "2.0",
     "latest_updated": "2015-05-16T00:00:00.000Z"
   },
-  {
-    "name": "vulnerable-not-popular",
+  "vulnerable-not-popular": {
     "latest_version": "7.0",
     "latest_updated": "2015-05-16T00:00:00.000Z",
     "popular": false,
@@ -24,4 +22,4 @@
       }
     ]
   }
-]
+}

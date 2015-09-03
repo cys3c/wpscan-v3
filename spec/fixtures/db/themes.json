@@ -1,13 +1,11 @@
-[
-  {
-    "name": "no-vulns-popular",
+{
+  "no-vulns-popular": {
     "popular": true,
     "latest_version": "2.0",
     "last_updated": "2015-05-16T00:00:00.000Z",
     "vulnerabilities": []
   },
-  {
-    "name": "dignitas-themes",
+  "dignitas-themes": {
     "popular": true,
     "latest_version": null,
     "last_updated": null,
@@ -27,8 +25,7 @@
         }
      ]
   },
-  {
-    "name": "yaaburnee-themes",
+  "yaaburnee-themes": {
     "popular": false,
     "latest_version": null,
     "last_updated": null,
@@ -48,4 +45,4 @@
       }
     ]
   }
-]
+}

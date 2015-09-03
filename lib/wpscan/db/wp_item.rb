@@ -6,13 +6,7 @@ module WPScan
       #
       # @return [ Hash ] The JSON data from the DB associated to the identifier
       def self.db_data(identifier)
-        db.each do |json|
-          asset = json['version'] || json['name']
-
-          return json if asset == identifier
-        end
-
-        {} # no item found, empty hash returned
+        db[identifier] || {}
       end
 
       # @return [ JSON ]
