@@ -5,6 +5,7 @@ require 'addressable/uri'
 require 'active_support/concern'
 # Standard Lib
 require 'uri'
+require 'time'
 require 'securerandom'
 # Custom Libs
 require 'wpscan/helper'

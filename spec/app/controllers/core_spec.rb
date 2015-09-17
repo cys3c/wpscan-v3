@@ -70,7 +70,9 @@ describe WPScan::Controller::Core do
       expect(core.formatter).to receive(:output).with('banner', hash_including(verbose: nil), 'core')
 
       unless parsed_options[:update]
-        expect_any_instance_of(WPScan::DB::Updater).to receive(:missing_files?).and_return(false)
+        # expect_any_instance_of(WPScan::DB::Updater).to receive(:missing_files?).and_return(false)
+        # TODO: consider all the update case (missing files, outdated db etc)
+        expect(core).to receive(:update_db_required?).and_return(false)
       end
     end
 

@@ -20,6 +20,24 @@ module WPScan
         fail "#{repo_directory} is not writable" unless Pathname.new(repo_directory).writable?
       end
 
+      def last_update
+        # return nil unless File.exist?(last_update_file)
+
+        Time.parse(File.read(last_update_file))
+      rescue ArgumentError, Errno::ENOENT
+        nil # returns nil if the file does not exist or contains invalid time data
+      end
+
+      def last_update_file
+        @last_update_file ||= File.join(repo_directory, '.last_update')
+      end
+
+      def update_required?
+        date = last_update
+
+        date.nil? || date < 5.days.ago || missing_files?
+      end
+
       def missing_files?
         FILES.each do |file|
           return true unless File.exist?(File.join(repo_directory, file))
@@ -116,6 +134,8 @@ module WPScan
             delete_backup(filename) if File.exist?(backup_file_path(filename))
           end
         end
+
+        File.write(last_update_file, Time.now)
 
         updated
       end

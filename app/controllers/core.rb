@@ -20,7 +20,7 @@ module WPScan
       end
 
       def update_db_required?
-        parsed_options[:update] || local_db.missing_files?
+        parsed_options[:update] || local_db.update_required?
       end
 
       def update_db
