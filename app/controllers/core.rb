@@ -19,6 +19,10 @@ module WPScan
         @local_db ||= DB::Updater.new(DB_DIR)
       end
 
+      def update_db_required?
+        parsed_options[:update] || local_db.missing_files?
+      end
+
       def update_db
         output('db_update_started')
         output('db_update_finished', updated: local_db.update, verbose: parsed_options[:verbose])
@@ -29,23 +33,21 @@ module WPScan
       def before_scan
         output('banner')
 
-        update_db if parsed_options[:update] || local_db.missing_files?
+        update_db if update_db_required?
 
-        begin
-          super(false) # disable banner output
-        rescue CMSScanner::HTTPRedirectError => e
-          raise e unless e.redirect_uri.path =~ %r{/wp-admin/install.php$}i
-
-          output('not_fully_configured', url: e.redirect_uri.to_s)
-
-          exit(WPScan::ExitCode::VULNERABLE)
-        end
+        super(false) # disable banner output
 
         DB.init_db
 
         load_server_module
-
         check_wordpress_state
+
+      rescue CMSScanner::HTTPRedirectError => e
+        raise e unless e.redirect_uri.path =~ %r{/wp-admin/install.php$}i
+
+        output('not_fully_configured', url: e.redirect_uri.to_s)
+
+        exit(WPScan::ExitCode::VULNERABLE)
       end
 
       # Raises errors if the target is hosted on wordpress.com or is not running WordPress

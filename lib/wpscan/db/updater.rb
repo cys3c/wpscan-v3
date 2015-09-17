@@ -17,8 +17,7 @@ module WPScan
 
         FileUtils.mkdir_p(repo_directory) unless Dir.exist?(repo_directory)
 
-        fail "#{repo_directory} is not writable" unless \
-          Pathname.new(repo_directory).writable?
+        fail "#{repo_directory} is not writable" unless Pathname.new(repo_directory).writable?
       end
 
       def missing_files?
