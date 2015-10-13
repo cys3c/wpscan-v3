@@ -11,6 +11,8 @@ module WPScan
 
         WORDPRESS_PATTERN = %r{/(?:(?:wp-content/(?:themes|plugins|uploads))|wp-includes)/}i
 
+        # These methods are used in the associated interesting_findings finders
+        # to keep the boolean state of the finding rather than re-check the whole thing again
         attr_accessor :multisite, :registration_enabled, :mu_plugins
         alias_method :multisite?, :multisite
         alias_method :registration_enabled?, :registration_enabled
