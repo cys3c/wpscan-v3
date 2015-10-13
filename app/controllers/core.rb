@@ -22,18 +22,20 @@ module WPScan
 
       # @return [ Boolean ]
       def update_db_required?
-        return parsed_options[:update] unless parsed_options[:update].nil?
+        if local_db.missing_files?
+          fail NoDatabase if parsed_options[:update] == false
 
-        if user_interaction?
-          if local_db.outdated?
-            output('@notice', msg: 'It seems like you have not updated the database for some time.')
-            print '[?] Do you want to update now? [Y]es [N]o, default: [N]'
-
-            return true if Readline.readline =~ /^y/i
-          end
+          return true
         end
 
-        local_db.missing_files?
+        return parsed_options[:update] unless parsed_options[:update].nil?
+
+        return false unless user_interaction? && local_db.outdated?
+
+        output('@notice', msg: 'It seems like you have not updated the database for some time.')
+        print '[?] Do you want to update now? [Y]es [N]o, default: [N]'
+
+        Readline.readline =~ /^y/i ? true : false
       end
 
       def update_db

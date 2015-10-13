@@ -64,21 +64,45 @@ describe WPScan::Controller::Core do
   end
 
   describe '#update_db_required?' do
-    context 'when --update' do
-      let(:parsed_options) { super().merge(update: true) }
+    context 'when missing files' do
+      before { expect(core.local_db).to receive(:missing_files?).ordered.and_return(true) }
 
-      its(:update_db_required?) { should eql true }
+      context 'when --no-update' do
+        let(:parsed_options) { super().merge(update: false) }
+
+        it 'raises an error' do
+          expect { core.update_db_required? }. to raise_error(WPScan::NoDatabase)
+        end
+      end
+
+      context 'otherwise' do
+        its(:update_db_required?) { should eql true }
+      end
     end
 
-    context 'when --no-update' do
-      let(:parsed_options) { super().merge(update: false) }
+    context 'when no missing files' do
+      before { expect(core.local_db).to receive(:missing_files?).ordered.and_return(false) }
 
-      its(:update_db_required?) { should eql false }
-    end
+      context 'when --update' do
+        let(:parsed_options) { super().merge(update: true) }
 
-    context 'when no update options' do
+        its(:update_db_required?) { should eql true }
+      end
+
+      context 'when --no-update' do
+        let(:parsed_options) { super().merge(update: false) }
+
+        its(:update_db_required?) { should eql false }
+      end
+
       context 'when user_interation (i.e cli output)' do
         let(:parsed_options) { super().merge(format: 'cli') }
+
+        context 'when the db is up-to-date' do
+          before { expect(core.local_db).to receive(:outdated?).and_return(false) }
+
+          its(:update_db_required?) { should eql false }
+        end
 
         context 'when the db is outdated' do
           before do
@@ -88,7 +112,7 @@ describe WPScan::Controller::Core do
           end
 
           context 'when a positive answer' do
-            before { expect(Readline).to receive(:readline).and_return('yes').ordered }
+            before { expect(Readline).to receive(:readline).and_return('Yes').ordered }
 
             its(:update_db_required?) { should eql true }
           end
@@ -96,21 +120,7 @@ describe WPScan::Controller::Core do
           context 'when a negative answer' do
             before { expect(Readline).to receive(:readline).and_return('no').ordered }
 
-            it 'expects the local_db#missing_files to be called' do
-              expect(core.local_db).to receive(:missing_files?).and_return(false)
-
-              expect(core.update_db_required?).to eql false
-            end
-          end
-        end
-
-        context 'when the db is up-to-date' do
-          before { expect(core.local_db).to receive(:outdated?).and_return(false) }
-
-          it 'expects the local_db#missing_files to be called' do
-            expect(core.local_db).to receive(:missing_files?).and_return(false)
-
-            expect(core.update_db_required?).to eql false
+            its(:update_db_required?) { should eql false }
           end
         end
       end
@@ -118,13 +128,7 @@ describe WPScan::Controller::Core do
       context 'when no user_interation' do
         let(:parsed_options) { super().merge(format: 'json') }
 
-        [true, false].each do |state|
-          context "when missing_files? is #{state}" do
-            before { expect(core.local_db).to receive(:missing_files?).and_return(state) }
-
-            its(:update_db_required?) { should eql state }
-          end
-        end
+        its(:update_db_required?) { should eql false }
       end
     end
   end
