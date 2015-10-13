@@ -6,9 +6,11 @@ require 'active_support/concern'
 # Standard Lib
 require 'uri'
 require 'time'
+require 'readline'
 require 'securerandom'
 # Custom Libs
 require 'wpscan/helper'
+require 'wpscan/hacks'
 require 'wpscan/db'
 require 'wpscan/version'
 require 'wpscan/errors/wordpress'

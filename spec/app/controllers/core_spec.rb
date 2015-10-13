@@ -63,6 +63,72 @@ describe WPScan::Controller::Core do
     end
   end
 
+  describe '#update_db_required?' do
+    context 'when --update' do
+      let(:parsed_options) { super().merge(update: true) }
+
+      its(:update_db_required?) { should eql true }
+    end
+
+    context 'when --no-update' do
+      let(:parsed_options) { super().merge(update: false) }
+
+      its(:update_db_required?) { should eql false }
+    end
+
+    context 'when no update options' do
+      context 'when user_interation (i.e cli output)' do
+        let(:parsed_options) { super().merge(format: 'cli') }
+
+        context 'when the db is outdated' do
+          before do
+            expect(core.local_db).to receive(:outdated?).ordered.and_return(true)
+            expect(core.formatter).to receive(:output).with('@notice', hash_including(:msg), 'core').ordered
+            expect($stdout).to receive(:write).ordered # for the print()
+          end
+
+          context 'when a positive answer' do
+            before { expect(Readline).to receive(:readline).and_return('yes').ordered }
+
+            its(:update_db_required?) { should eql true }
+          end
+
+          context 'when a negative answer' do
+            before { expect(Readline).to receive(:readline).and_return('no').ordered }
+
+            it 'expects the local_db#missing_files to be called' do
+              expect(core.local_db).to receive(:missing_files?).and_return(false)
+
+              expect(core.update_db_required?).to eql false
+            end
+          end
+        end
+
+        context 'when the db is up-to-date' do
+          before { expect(core.local_db).to receive(:outdated?).and_return(false) }
+
+          it 'expects the local_db#missing_files to be called' do
+            expect(core.local_db).to receive(:missing_files?).and_return(false)
+
+            expect(core.update_db_required?).to eql false
+          end
+        end
+      end
+
+      context 'when no user_interation' do
+        let(:parsed_options) { super().merge(format: 'json') }
+
+        [true, false].each do |state|
+          context "when missing_files? is #{state}" do
+            before { expect(core.local_db).to receive(:missing_files?).and_return(state) }
+
+            its(:update_db_required?) { should eql state }
+          end
+        end
+      end
+    end
+  end
+
   describe '#before_scan' do
     before do
       stub_request(:get, target_url)
