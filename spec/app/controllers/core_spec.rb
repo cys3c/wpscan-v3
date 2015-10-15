@@ -71,7 +71,7 @@ describe WPScan::Controller::Core do
         let(:parsed_options) { super().merge(update: false) }
 
         it 'raises an error' do
-          expect { core.update_db_required? }. to raise_error(WPScan::NoDatabase)
+          expect { core.update_db_required? }. to raise_error(WPScan::MissingDatabaseFile)
         end
       end
 

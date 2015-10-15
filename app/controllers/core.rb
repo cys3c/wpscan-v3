@@ -23,7 +23,7 @@ module WPScan
       # @return [ Boolean ]
       def update_db_required?
         if local_db.missing_files?
-          fail NoDatabase if parsed_options[:update] == false
+          fail MissingDatabaseFile if parsed_options[:update] == false
 
           return true
         end
