@@ -19,7 +19,7 @@
 <%= render('@finding', item: @theme) -%>,
 <% if @theme.version -%>
 "version": {
-  "number": <%= @theme.version.to_json %>,
+  "number": <%= @theme.version.number.to_json %>,
   "confidence": <%= @theme.version.confidence.to_json %>,
   <%= render('@finding', item: @theme.version) -%>
 },

@@ -63,6 +63,76 @@ describe WPScan::Controller::Core do
     end
   end
 
+  describe '#update_db_required?' do
+    context 'when missing files' do
+      before { expect(core.local_db).to receive(:missing_files?).ordered.and_return(true) }
+
+      context 'when --no-update' do
+        let(:parsed_options) { super().merge(update: false) }
+
+        it 'raises an error' do
+          expect { core.update_db_required? }. to raise_error(WPScan::MissingDatabaseFile)
+        end
+      end
+
+      context 'otherwise' do
+        its(:update_db_required?) { should eql true }
+      end
+    end
+
+    context 'when no missing files' do
+      before { expect(core.local_db).to receive(:missing_files?).ordered.and_return(false) }
+
+      context 'when --update' do
+        let(:parsed_options) { super().merge(update: true) }
+
+        its(:update_db_required?) { should eql true }
+      end
+
+      context 'when --no-update' do
+        let(:parsed_options) { super().merge(update: false) }
+
+        its(:update_db_required?) { should eql false }
+      end
+
+      context 'when user_interation (i.e cli output)' do
+        let(:parsed_options) { super().merge(format: 'cli') }
+
+        context 'when the db is up-to-date' do
+          before { expect(core.local_db).to receive(:outdated?).and_return(false) }
+
+          its(:update_db_required?) { should eql false }
+        end
+
+        context 'when the db is outdated' do
+          before do
+            expect(core.local_db).to receive(:outdated?).ordered.and_return(true)
+            expect(core.formatter).to receive(:output).with('@notice', hash_including(:msg), 'core').ordered
+            expect($stdout).to receive(:write).ordered # for the print()
+          end
+
+          context 'when a positive answer' do
+            before { expect(Readline).to receive(:readline).and_return('Yes').ordered }
+
+            its(:update_db_required?) { should eql true }
+          end
+
+          context 'when a negative answer' do
+            before { expect(Readline).to receive(:readline).and_return('no').ordered }
+
+            its(:update_db_required?) { should eql false }
+          end
+        end
+      end
+
+      context 'when no user_interation' do
+        let(:parsed_options) { super().merge(format: 'json') }
+
+        its(:update_db_required?) { should eql false }
+      end
+    end
+  end
+
   describe '#before_scan' do
     before do
       stub_request(:get, target_url)
@@ -70,7 +140,9 @@ describe WPScan::Controller::Core do
       expect(core.formatter).to receive(:output).with('banner', hash_including(verbose: nil), 'core')
 
       unless parsed_options[:update]
-        expect_any_instance_of(WPScan::DB::Updater).to receive(:missing_files?).and_return(false)
+        # expect_any_instance_of(WPScan::DB::Updater).to receive(:missing_files?).and_return(false)
+        # TODO: consider all the update case (missing files, outdated db etc)
+        expect(core).to receive(:update_db_required?).and_return(false)
       end
     end
 

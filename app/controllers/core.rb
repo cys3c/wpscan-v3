@@ -11,16 +11,31 @@ module WPScan
                           choices: %w(apache iis nginx),
                           normalize: [:downcase, :to_sym]),
             OptBoolean.new(['--force', 'Do not check if the target is running WordPress']),
-            OptBoolean.new(['--update', 'Update the Database'], required_unless: :url)
+            OptBoolean.new(['--[no-]update', 'Wether or not to update the Database'], required_unless: :url)
           ]
       end
 
+      # @return [ DB::Updater ]
       def local_db
         @local_db ||= DB::Updater.new(DB_DIR)
       end
 
+      # @return [ Boolean ]
       def update_db_required?
-        parsed_options[:update] || local_db.missing_files?
+        if local_db.missing_files?
+          fail MissingDatabaseFile if parsed_options[:update] == false
+
+          return true
+        end
+
+        return parsed_options[:update] unless parsed_options[:update].nil?
+
+        return false unless user_interaction? && local_db.outdated?
+
+        output('@notice', msg: 'It seems like you have not updated the database for some time.')
+        print '[?] Do you want to update now? [Y]es [N]o, default: [N]'
+
+        Readline.readline =~ /^y/i ? true : false
       end
 
       def update_db
