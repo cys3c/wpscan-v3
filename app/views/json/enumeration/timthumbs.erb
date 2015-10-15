@@ -6,7 +6,7 @@
     <%= render('@finding', item: timthumb) -%>,
     <% if timthumb.version -%>
     "version": {
-      "number": <%= timthumb.version.to_json %>,
+      "number": <%= timthumb.version.number.to_json %>,
       "confidence": <%= timthumb.version.confidence.to_json %>,
       <%= render('@finding', item: timthumb.version) -%>
     }

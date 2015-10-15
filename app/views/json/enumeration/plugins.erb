@@ -12,7 +12,7 @@
     <%= render('@finding', item: plugin) -%>,
     <% if plugin.version -%>
     "version": {
-      "number": <%= plugin.version.to_json %>,
+      "number": <%= plugin.version.number.to_json %>,
       "confidence": <%= plugin.version.confidence.to_json %>,
       <%= render('@finding', item: plugin.version) -%>
     }
