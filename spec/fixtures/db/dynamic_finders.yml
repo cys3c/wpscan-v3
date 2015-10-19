@@ -105,6 +105,9 @@ plugins:
     Comments:
       pattern: 'Powered by WeatherIcon v([\d\.]+) \|'
       version: true
+  wordpress-mobile-pack:
+    UrlsInHomepage:
+      xpath: '//a[starts-with(@href,"?wpmp_switcher=")]'
   wordpress-seo:
     Comments:
       pattern: 'optimized with the Yoast(?: WordPress)? SEO plugin v([^\s]+) -'

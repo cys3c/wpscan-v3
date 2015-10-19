@@ -75,7 +75,7 @@ describe WPScan::Controller::Enumeration do
       it 'creates the expected classes' do
         dynamic_finders_config['plugins'].each do |name, config|
           %w(Comments).each do |klass|
-            next unless config[klass]['version'] && name != 'rspec-failure'
+            next unless config[klass] && config[klass]['version'] && name != 'rspec-failure'
 
             constant_name = name.tr('-', '_').camelize
 

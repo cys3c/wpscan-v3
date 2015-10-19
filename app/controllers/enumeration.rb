@@ -9,7 +9,7 @@ module WPScan
         # Create the Dynamic Finders
         dynamic_finders_config['plugins'].each do |name, config|
           %w(Comments).each do |klass|
-            next unless config[klass]['version']
+            next unless config[klass] && config[klass]['version']
 
             constant_name = name.tr('-', '_').camelize
 

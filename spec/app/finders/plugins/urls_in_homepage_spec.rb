@@ -15,6 +15,16 @@ describe WPScan::Finders::Plugins::UrlsInHomepage do
   end
 
   describe '#passive' do
-    xit
+    before do
+      stub_request(:get, finder.target.url).to_return(body: File.read(File.join(fixtures, 'found.html')))
+      expect(finder.target).to receive(:content_dir).at_least(1).and_return('wp-content')
+    end
+
+    # findings from items_from_links & items_from_code are ignored here
+    # as tested in the above
+    it 'contains the plugins found from the #xpath_matches' do
+      expect(finder.passive.map(&:name))
+        .to include(*dynamic_finders_config['plugins'].select { |_, c| c['UrlsInHomepage'] }.keys)
+    end
   end
 end
