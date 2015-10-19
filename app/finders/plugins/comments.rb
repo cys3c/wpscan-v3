@@ -24,9 +24,10 @@ module WPScan
           found
         end
 
+        # TODO: find a way to have less lines, like @patterns ||= dynamic_finders_config['plugins']...
         # @return [ Hash ]
         def patterns
-          return @patterns if @pattern
+          return @patterns if @patterns
 
           @patterns = {}
 
