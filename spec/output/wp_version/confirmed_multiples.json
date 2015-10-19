@@ -6,23 +6,21 @@
     "interesting_entries": [
 
     ],
-    "confirmed_by": [
-      {
-        "Confirmed 1": {
-          "confidence": 0,
-          "interesting_entries": [
-            "IE1"
-          ]
-        },
-        "Confirmed 2": {
-          "confidence": 0,
-          "interesting_entries": [
-            "IE1",
-            "IE2"
-          ]
-        }
+    "confirmed_by": {
+      "Confirmed 1": {
+        "confidence": 0,
+        "interesting_entries": [
+          "IE1"
+        ]
+      },
+      "Confirmed 2": {
+        "confidence": 0,
+        "interesting_entries": [
+          "IE1",
+          "IE2"
+        ]
       }
-    ],
+    },
     "vulnerabilities": [
 
     ]

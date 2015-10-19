@@ -6,9 +6,9 @@
     "interesting_entries": [
 
     ],
-    "confirmed_by": [
+    "confirmed_by": {
 
-    ],
+    },
     "vulnerabilities": [
       {
         "title": "WP 3.8.1 - Vuln 1",

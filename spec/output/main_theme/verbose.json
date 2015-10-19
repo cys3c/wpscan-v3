@@ -23,9 +23,9 @@
     "interesting_entries": [
 
     ],
-    "confirmed_by": [
+    "confirmed_by": {
 
-    ],
+    },
     "vulnerabilities": [
 
     ],
@@ -36,9 +36,9 @@
       "interesting_entries": [
 
       ],
-      "confirmed_by": [
+      "confirmed_by": {
 
-      ],
+      },
       "vulnerabilities": [
 
       ]

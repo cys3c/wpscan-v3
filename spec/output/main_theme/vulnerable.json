@@ -23,9 +23,9 @@
     "interesting_entries": [
 
     ],
-    "confirmed_by": [
+    "confirmed_by": {
 
-    ],
+    },
     "vulnerabilities": [
       {
         "title": "Dignitas 1.1.9 - Privilage Escalation",

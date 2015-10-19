@@ -6,9 +6,9 @@
       "interesting_entries": [
 
       ],
-      "confirmed_by": [
+      "confirmed_by": {
 
-      ],
+      },
       "vulnerabilities": [
         {
           "title": "Timthumb <= 2.8.13 WebShot Remote Code Execution",
@@ -41,9 +41,9 @@
       "interesting_entries": [
 
       ],
-      "confirmed_by": [
+      "confirmed_by": {
 
-      ],
+      },
       "vulnerabilities": [
 
       ],
@@ -54,9 +54,9 @@
         "interesting_entries": [
 
         ],
-        "confirmed_by": [
+        "confirmed_by": {
 
-        ],
+        },
         "vulnerabilities": [
 
         ]
