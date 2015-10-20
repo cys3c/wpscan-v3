@@ -12,8 +12,8 @@ module WPScan
           Browser.get(target.url).html.xpath('//comment()').each do |node|
             comment = node.text.to_s
 
-            patterns.each do |name, pattern|
-              next unless comment =~ pattern
+            DB::DynamicPluginFinders.comments.each do |name, config|
+              next unless comment =~ config['pattern']
 
               plugin = WPScan::Plugin.new(name, target, opts.merge(found_by: found_by, confidence: 70))
 
@@ -22,22 +22,6 @@ module WPScan
           end
 
           found
-        end
-
-        # TODO: find a way to have less lines, like @patterns ||= dynamic_finders_config['plugins']...
-        # @return [ Hash ]
-        def patterns
-          return @patterns if @patterns
-
-          @patterns = {}
-
-          dynamic_finders_config['plugins'].each do |name, config|
-            next unless config['Comments']
-
-            @patterns[name] = Regexp.new(config['Comments']['pattern'], Regexp::IGNORECASE)
-          end
-
-          @patterns
         end
       end
     end

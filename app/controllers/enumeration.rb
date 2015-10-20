@@ -7,7 +7,7 @@ module WPScan
     class Enumeration < CMSScanner::Controller::Base
       def before_scan
         # Create the Dynamic Finders
-        dynamic_finders_config['plugins'].each do |name, config|
+        DB::DynamicPluginFinders.db_data.each do |name, config|
           %w(Comments).each do |klass|
             next unless config[klass] && config[klass]['version']
 

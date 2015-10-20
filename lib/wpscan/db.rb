@@ -12,6 +12,7 @@ require 'wpscan/db/themes'
 require 'wpscan/db/plugin'
 require 'wpscan/db/theme'
 require 'wpscan/db/wp_version'
+require 'wpscan/db/dynamic_finders'
 
 module WPScan
   # DB

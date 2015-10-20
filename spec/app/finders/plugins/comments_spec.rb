@@ -32,8 +32,8 @@ describe WPScan::Finders::Plugins::Comments do
       it 'returns the expected array' do
         @expected = []
 
-        dynamic_finders_config['plugins'].each do |name, config|
-          @expected << plugin(name) if config['Comments'] && name != 'rspec-failure'
+        WPScan::DB::DynamicPluginFinders.comments.each do |name, _config|
+          @expected << plugin(name) if name != 'rspec-failure'
         end
       end
     end

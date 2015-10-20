@@ -23,8 +23,7 @@ describe WPScan::Finders::Plugins::UrlsInHomepage do
     # findings from items_from_links & items_from_code are ignored here
     # as tested in the above
     it 'contains the plugins found from the #xpath_matches' do
-      expect(finder.passive.map(&:name))
-        .to include(*dynamic_finders_config['plugins'].select { |_, c| c['UrlsInHomepage'] }.keys)
+      expect(finder.passive.map(&:name)).to include(*WPScan::DB::DynamicPluginFinders.urls_in_page.keys)
     end
   end
 end

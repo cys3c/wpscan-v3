@@ -73,7 +73,7 @@ describe WPScan::Controller::Enumeration do
 
     context 'when everything is fine' do
       it 'creates the expected classes' do
-        dynamic_finders_config['plugins'].each do |name, config|
+        WPScan::DB::DynamicPluginFinders.db_data.each do |name, config|
           %w(Comments).each do |klass|
             next unless config[klass] && config[klass]['version'] && name != 'rspec-failure'
 
