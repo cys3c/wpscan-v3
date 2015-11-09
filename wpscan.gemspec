@@ -35,18 +35,18 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'yajl-ruby', '~> 1.2.1' # Better JSON parser regarding memory usage
   s.add_dependency 'cms_scanner', '~> 0.0.37.1'
-  s.add_dependency 'activesupport', '~> 4.2' # Not sure if needed there as already needed in the CMSScanner
+  s.add_dependency 'activesupport', '~> 4.2.0' # Not sure if needed there as already needed in the CMSScanner
   # DB dependencies
-  s.add_dependency 'dm-core', '~> 1.2'
-  s.add_dependency 'dm-migrations', '~> 1.2'
-  s.add_dependency 'dm-constraints', '~> 1.2'
-  s.add_dependency 'dm-sqlite-adapter', '~> 1.2'
+  s.add_dependency 'dm-core', '~> 1.2.0'
+  s.add_dependency 'dm-migrations', '~> 1.2.0'
+  s.add_dependency 'dm-constraints', '~> 1.2.0'
+  s.add_dependency 'dm-sqlite-adapter', '~> 1.2.0'
 
-  s.add_development_dependency 'rake', '~> 10.4'
-  s.add_development_dependency 'rspec', '~> 3.3'
-  s.add_development_dependency 'rspec-its', '~> 1.2'
-  s.add_development_dependency 'bundler', '~> 1.6'
+  s.add_development_dependency 'rake', '~> 10.4.0'
+  s.add_development_dependency 'rspec', '~> 3.3.0'
+  s.add_development_dependency 'rspec-its', '~> 1.2.0'
+  s.add_development_dependency 'bundler', '~> 1.10.0'
   s.add_development_dependency 'rubocop', '~> 0.34.0'
-  s.add_development_dependency 'webmock', '~> 1.22'
-  s.add_development_dependency 'simplecov', '~> 0.10'
+  s.add_development_dependency 'webmock', '~> 1.22.0'
+  s.add_development_dependency 'simplecov', '~> 0.10.0'
 end
