@@ -10,7 +10,7 @@ Prerequisites:
 - RubyGems      - Recommended: latest
 
 
-### From the rubygems:
+### From the rubygems (not yet available):
 
 ```gem install wpscan```
 
