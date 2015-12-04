@@ -53,4 +53,4 @@ proxy: 'socks5://127.0.0.1:9090'
 url: 'http://target.tld'
 ```
 
-Running ```wpscan``` in the current directory (pwd), is the same than ```wpscan -v --proxy socks5://127.0.0.1:9090 -u http://target.tld```
+Running ```wpscan``` in the current directory (pwd), is the same than ```wpscan -v --proxy socks5://127.0.0.1:9090 --url http://target.tld```
