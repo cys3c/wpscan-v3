@@ -34,7 +34,7 @@ Gem::Specification.new do |s|
   s.require_path          = 'lib'
 
   s.add_dependency 'yajl-ruby', '~> 1.2.1' # Better JSON parser regarding memory usage
-  s.add_dependency 'cms_scanner', '~> 0.0.37.1'
+  s.add_dependency 'cms_scanner', '~> 0.0.37.2'
   s.add_dependency 'activesupport', '~> 4.2.0' # Not sure if needed there as already needed in the CMSScanner
   # DB dependencies
   s.add_dependency 'dm-core', '~> 1.2.0'
