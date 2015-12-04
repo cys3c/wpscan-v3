@@ -26,7 +26,7 @@ Prerequisites: Git
 
 #### Usage
 
-Open a terminal and type wpscan --help
+Open a terminal and type wpscan --help (if you built wpscan from the source, you should type the command outside of the git repo)
 
 The DB is located at ~/.wpscan/db
 
