@@ -5,7 +5,7 @@ WPSCan v3 - Experimental Repo
 #### INSTALL
 Prerequisites:
 
-- Ruby >= 2.1.0 - Recommended: 2.2.2
+- Ruby >= 2.1.0 - Recommended: 2.2.3
 - Curl >= 7.21  - Recommended: latest - FYI the 7.29 has a segfault
 - RubyGems      - Recommended: latest
 
