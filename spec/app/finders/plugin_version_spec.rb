@@ -20,12 +20,12 @@ describe WPScan::Finders::PluginVersion::Base do
     end
 
     # Dynamic Version Finders are not tested here, they are in
-    # - spec/app/finders/plugins/coments_specs (nothing needs to be changed)
+    # - spec/app/finders/plugins/comments_specs (nothing needs to be changed)
     # - spec/app/finders/controllers/enumeration_spec (nothing needs to be changed)
     # - spec/fixtures/db/dynamic_finders.yml (add/update the pattern in there)
     # - spec/fixtures/finders/plugins/comments/found.html (add/update the HTML comments there)
     #
-    # Note: versions detected by the dynamic finders are currently not tested
+    # Note: versions detected by the dynamic finders are currently not tested (TODO)
     #
     # However, they should be included in the below if they have both dynamic and specific finders
     # like for the revslider plugin

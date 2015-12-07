@@ -6,6 +6,10 @@ module WPScan
         class Comments < CMSScanner::Finders::Finder
           def passive(_opts = {})
             target.target.comments_from_page(self.class::PATTERN) do |match|
+              # Avoid nil version, i.e a pattern allowing both versionable and non
+              # versionable string to be detected
+              next unless match[1]
+
               return WPScan::Version.new(
                 match[1],
                 found_by: found_by,
