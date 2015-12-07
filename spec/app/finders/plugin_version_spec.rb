@@ -32,7 +32,7 @@ describe WPScan::Finders::PluginVersion::Base do
     context 'when specific finders' do
       {
         'sitepress-multilingual-cms' => %w(VersionParameter MetaGenerator),
-        'w3-total-cache' => %w(Headers),
+        'w3-total-cache' => %w(Headers Comments),
         'LayerSlider' => %w(TranslationFile),
         'revslider' => %w(ReleaseLog Comments)
       }.each do |plugin_name, specific_finders|

@@ -54,8 +54,11 @@ describe WPScan::Finders::Plugins::Comments do
 
           # Adds the plugins detected more than once (due to pattern variations)
           %w(
-            all-in-one-seo-pack google-analytics-for-wordpress nginx-helper optin-monster revslider
-            wordpress-seo wordpress-seo wp-piwik wp-piwik wp-piwik wp-spamfree
+            all-in-one-seo-pack enhanced-links google-analytics-for-wordpress google-analytics-for-wordpress
+            kontera-official nginx-helper
+            optin-monster revslider w3-total-cache
+            wordpress-seo wordpress-seo wow-analytics wow-analytics wow-analytics
+            wp-piwik wp-piwik wp-piwik wp-spamfree
           ).each do |p|
             @expected << plugin(p)
           end
