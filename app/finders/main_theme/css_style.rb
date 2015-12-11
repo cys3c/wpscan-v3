@@ -14,9 +14,7 @@ module WPScan
         end
 
         def passive(opts = {})
-          res = Browser.get(target.url)
-
-          passive_from_css_href(res, opts) || passive_from_style_code(res, opts)
+          passive_from_css_href(target.homepage_res, opts) || passive_from_style_code(target.homepage_res, opts)
         end
 
         def passive_from_css_href(res, opts)

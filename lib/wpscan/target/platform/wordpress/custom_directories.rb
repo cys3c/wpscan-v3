@@ -17,7 +17,7 @@ module WPScan
             escaped_url = Regexp.escape(url).gsub(/https?/i, 'https?')
             pattern     = %r{#{escaped_url}(.+?)\/(?:themes|plugins|uploads)\/}i
 
-            in_scope_urls(Browser.get(url)) do |url|
+            in_scope_urls(homepage_res) do |url|
               return @content_dir = Regexp.last_match[1] if url.match(pattern)
             end
           end
@@ -59,7 +59,7 @@ module WPScan
             escaped_url = Regexp.escape(url).gsub(/https?/i, 'https?')
             pattern     = %r{#{escaped_url}(.+?)\/(?:xmlrpc\.php|wp\-includes\/)}i
 
-            in_scope_urls(Browser.get(url)) do |url|
+            in_scope_urls(homepage_res) do |url|
               return @sub_dir = Regexp.last_match[1] if url.match(pattern)
             end
 

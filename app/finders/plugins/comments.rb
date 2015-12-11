@@ -11,7 +11,7 @@ module WPScan
           found         = []
           opts[:unique] = true unless opts.key?(:unique)
 
-          Browser.get(target.url).html.xpath('//comment()').each do |node|
+          target.homepage_res.html.xpath('//comment()').each do |node|
             comment = node.text.to_s.strip
 
             DB::DynamicPluginFinders.comments.each do |name, config|

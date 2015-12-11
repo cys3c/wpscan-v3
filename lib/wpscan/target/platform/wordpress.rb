@@ -20,17 +20,17 @@ module WPScan
 
         # @return [ Boolean ]
         def wordpress?
-          res = Browser.get(url)
+          # res = Browser.get(url)
 
-          in_scope_urls(res) do |url|
+          in_scope_urls(homepage_res) do |url|
             return true if Addressable::URI.parse(url).path.match(WORDPRESS_PATTERN)
           end
 
-          res.html.css('meta[name="generator"]').each do |node|
+          homepage_res.html.css('meta[name="generator"]').each do |node|
             return true if node['content'] =~ /wordpress/i
           end
 
-          return true unless comments_from_page(/wordpress/i, res).empty?
+          return true unless comments_from_page(/wordpress/i, homepage_res).empty?
 
           false
         end

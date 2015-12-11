@@ -7,7 +7,7 @@ module WPScan
         def passive(_opts = {})
           pattern = %r{#{target.content_dir}/mu\-plugins/}i
 
-          target.in_scope_urls(Browser.get(target.url)) do |url|
+          target.in_scope_urls(target.homepage_res) do |url|
             next unless Addressable::URI.parse(url).path =~ pattern
 
             url = target.url('wp-content/mu-plugins/')

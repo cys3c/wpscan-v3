@@ -178,7 +178,13 @@ describe WPScan::Controller::Core do
     end
 
     context 'when a redirect occurs' do
-      before { expect(core.target).to receive(:redirection).and_return(redirection) }
+      before do
+        stub_request(:any, target_url)
+
+        expect(core.target).to receive(:homepage_res)
+          .at_least(1)
+          .and_return(Typhoeus::Response.new(effective_url: redirection, body: ''))
+      end
 
       context 'to the wp-admin/install.php' do
         let(:redirection) { "#{target_url}wp-admin/install.php" }
@@ -203,8 +209,20 @@ describe WPScan::Controller::Core do
       context 'to another path with the wp-admin/install.php in the query' do
         let(:redirection) { "#{target_url}index.php?a=/wp-admin/install.php" }
 
-        it 'raises a error' do
-          expect { core.before_scan }.to raise_error(CMSScanner::HTTPRedirectError)
+        context 'when wordpress' do
+          it 'does not raise an error' do
+            expect(core.target).to receive(:wordpress?).and_return(true)
+
+            expect { core.before_scan }.to_not raise_error
+          end
+        end
+
+        context 'when not wordpress' do
+          it 'raises an error' do
+            expect(core.target).to receive(:wordpress?).and_return(false)
+
+            expect { core.before_scan }.to raise_error(WPScan::NotWordPressError)
+          end
         end
       end
     end

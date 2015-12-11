@@ -55,19 +55,22 @@ module WPScan
         DB.init_db
 
         load_server_module
+
         check_wordpress_state
-
-      rescue CMSScanner::HTTPRedirectError => e
-        raise e unless e.redirect_uri.path =~ %r{/wp-admin/install.php$}i
-
-        output('not_fully_configured', url: e.redirect_uri.to_s)
-
-        exit(WPScan::ExitCode::VULNERABLE)
       end
 
       # Raises errors if the target is hosted on wordpress.com or is not running WordPress
+      # Also check if the homepage_url is still the install url
       def check_wordpress_state
         fail WordPressHostedError if target.wordpress_hosted?
+
+        if Addressable::URI.parse(target.homepage_url).path =~ %r{/wp-admin/install.php$}i
+
+          output('not_fully_configured', url: target.homepage_url)
+
+          exit(WPScan::ExitCode::VULNERABLE)
+        end
+
         fail NotWordPressError unless target.wordpress? || parsed_options[:force]
       end
 

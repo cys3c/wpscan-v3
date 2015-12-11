@@ -8,7 +8,7 @@ module WPScan
         PATTERN           = /#{THEME_PATTERN}\s+#{FRAMEWORK_PATTERN}/i
 
         def passive(opts = {})
-          return unless Browser.get(target.url).body =~ PATTERN
+          return unless target.homepage_res.body =~ PATTERN
 
           WPScan::Theme.new(
             Regexp.last_match[1],

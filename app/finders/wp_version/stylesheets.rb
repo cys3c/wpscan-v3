@@ -7,14 +7,14 @@ module WPScan
         def passive(_opts = {})
           found = []
 
-          scan_page(target.url).each do |version_number, occurences|
+          scan_page(target.homepage_url).each do |version_number, occurences|
             next unless WPScan::WpVersion.valid?(version_number) # Skip invalid versions
 
             found << WPScan::WpVersion.new(
               version_number,
               found_by: 'Stylesheet Numbers (Passive Detection)',
               confidence: 5 * occurences,
-              interesting_entries: [target.url]
+              interesting_entries: [target.homepage_url]
             )
           end
 

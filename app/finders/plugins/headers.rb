@@ -18,7 +18,7 @@ module WPScan
         # @return [ Array<String> ]
         def plugin_names_from_headers(_opts = {})
           found   = []
-          headers = Browser.get(target.url).headers
+          headers = target.homepage_res.headers
 
           if headers
             powered_by     = headers['X-Powered-By'].to_s

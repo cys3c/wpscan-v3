@@ -8,7 +8,7 @@ module WPScan
           #
           # @return [ Version ]
           def passive(_opts = {})
-            Browser.get(target.target.url).html.css('meta[name="generator"]').each do |node|
+            target.target.homepage_res.html.css('meta[name="generator"]').each do |node|
               next unless node['content'] =~ /\AWPML\sver:([0-9\.]+)\sstt/i
 
               return WPScan::Version.new(

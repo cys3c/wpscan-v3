@@ -5,10 +5,6 @@ module WPScan
       class UrlsInHomepage < CMSScanner::Finders::Finder
         include WpItems::URLsInHomepage
 
-        def homepage
-          @homepage ||= Browser.get(target.url).html
-        end
-
         # @param [ Hash ] opts
         #
         # @return [ Array<Plugin> ]
@@ -20,7 +16,7 @@ module WPScan
           end
 
           DB::DynamicPluginFinders.urls_in_page.each do |name, config|
-            next unless homepage.xpath(config['xpath']).any?
+            next unless target.homepage_res.html.xpath(config['xpath']).any?
 
             found << Plugin.new(name, target, opts.merge(found_by: found_by, confidence: 100))
           end

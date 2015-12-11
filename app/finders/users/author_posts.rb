@@ -22,12 +22,11 @@ module WPScan
         #
         # @return [ Array<Array>> ]
         def usernames(_opts = {})
-          res   = Browser.get(target.url)
-          found = potential_usernames(res)
+          found = potential_usernames(target.homepage_res)
 
           return found unless found.empty?
 
-          res.html.css('header.entry-header a').each do |post_url_node|
+          target.homepage_res.html.css('header.entry-header a').each do |post_url_node|
             url = post_url_node['href']
 
             next if url.nil? || url.empty?

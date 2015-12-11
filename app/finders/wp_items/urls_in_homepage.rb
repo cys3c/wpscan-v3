@@ -10,7 +10,7 @@ module WPScan
         def items_from_links(type, uniq = true)
           found = []
 
-          target.in_scope_urls(Browser.get(target.url)) do |url|
+          target.in_scope_urls(target.homepage_res) do |url|
             next unless url =~ item_attribute_pattern(type)
 
             found << Regexp.last_match[1]
@@ -26,7 +26,7 @@ module WPScan
         def items_from_codes(type, uniq = true)
           found = []
 
-          Browser.get(target.url).html.css('script,style').each do |tag|
+          target.homepage_res.html.css('script,style').each do |tag|
             code = tag.text.to_s
             next if code.empty?
 

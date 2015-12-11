@@ -10,7 +10,7 @@ module WPScan
           def passive(_opts = {})
             pattern = %r{#{Regexp.escape(target.target.plugins_dir)}/sitepress-multilingual-cms/}i
 
-            target.target.in_scope_urls(Browser.get(target.target.url), '//link|//script') do |url|
+            target.target.in_scope_urls(target.target.homepage_res, '//link|//script') do |url|
               uri = Addressable::URI.parse(url)
 
               next unless uri.path =~ pattern && uri.query =~ /v=([0-9\.]+)/
