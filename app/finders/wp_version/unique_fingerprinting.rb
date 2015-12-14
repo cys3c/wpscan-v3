@@ -19,10 +19,7 @@ module WPScan
         def aggressive(opts = {})
           fingerprint(unique_fingerprints, opts) do |version_number, url, md5sum|
             hydra.abort
-
-            # dirty hack to avoid the progress bar to overlap with the " WordPress version 4.1.1 identified."
-            # TODO: find a better way to do this
-            puts if opts[:show_progression]
+            progress_bar.finish
 
             return WPScan::WpVersion.new(
               version_number,
@@ -58,7 +55,7 @@ module WPScan
           fingerprints
         end
 
-        def progress_bar(opts = {})
+        def create_progress_bar(opts = {})
           super(opts.merge(title: 'Fingerprinting the version -'))
         end
       end

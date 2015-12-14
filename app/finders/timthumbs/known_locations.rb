@@ -47,7 +47,7 @@ module WPScan
              scripts/timthumb.php tools/timthumb.php functions/timthumb.php)
         end
 
-        def progress_bar(opts = {})
+        def create_progress_bar(opts = {})
           super(opts.merge(title: ' Checking Known Locations -'))
         end
       end
