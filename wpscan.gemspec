@@ -23,6 +23,7 @@ Gem::Specification.new do |s|
       |Rakefile
       |\.rspec
       |\.gitignore
+      |\.gitlab-ci.yml
       |\.rubocop.yml
       |\.travis.yml
       |\.ruby-gemset
