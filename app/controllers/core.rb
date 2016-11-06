@@ -23,7 +23,7 @@ module WPScan
       # @return [ Boolean ]
       def update_db_required?
         if local_db.missing_files?
-          fail MissingDatabaseFile if parsed_options[:update] == false
+          raise MissingDatabaseFile if parsed_options[:update] == false
 
           return true
         end
@@ -62,7 +62,7 @@ module WPScan
       # Raises errors if the target is hosted on wordpress.com or is not running WordPress
       # Also check if the homepage_url is still the install url
       def check_wordpress_state
-        fail WordPressHostedError if target.wordpress_hosted?
+        raise WordPressHostedError if target.wordpress_hosted?
 
         if Addressable::URI.parse(target.homepage_url).path =~ %r{/wp-admin/install.php$}i
 
@@ -71,7 +71,7 @@ module WPScan
           exit(WPScan::ExitCode::VULNERABLE)
         end
 
-        fail NotWordPressError unless target.wordpress? || parsed_options[:force]
+        raise NotWordPressError unless target.wordpress? || parsed_options[:force]
       end
 
       # Loads the related server module in the target

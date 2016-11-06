@@ -8,7 +8,7 @@ module WPScan
         plugins.json themes.json wordpresses.json
         timthumbs-v3.txt user-agents.txt config_backups.txt
         dynamic_finders.yml wordpress.db LICENSE
-      )
+      ).freeze
 
       attr_reader :repo_directory
 
@@ -17,7 +17,7 @@ module WPScan
 
         FileUtils.mkdir_p(repo_directory) unless Dir.exist?(repo_directory)
 
-        fail "#{repo_directory} is not writable" unless Pathname.new(repo_directory).writable?
+        raise "#{repo_directory} is not writable" unless Pathname.new(repo_directory).writable?
       end
 
       # @return [ Time, nil ]
@@ -69,12 +69,12 @@ module WPScan
         url = "#{remote_file_url(filename)}.sha512"
 
         res = Browser.get(url, request_params)
-        fail DownloadError, res if res.timed_out? || res.code != 200
+        raise DownloadError, res if res.timed_out? || res.code != 200
         res.body.chomp
       end
 
       def local_file_path(filename)
-        File.join(repo_directory, "#{filename}")
+        File.join(repo_directory, filename.to_s)
       end
 
       def local_file_checksum(filename)
@@ -105,7 +105,7 @@ module WPScan
         file_url  = remote_file_url(filename)
 
         res = Browser.get(file_url, request_params)
-        fail DownloadError, res if res.timed_out? || res.code != 200
+        raise DownloadError, res if res.timed_out? || res.code != 200
 
         File.open(file_path, 'wb') { |f| f.write(res.body) }
 
@@ -127,7 +127,7 @@ module WPScan
             create_backup(filename)
             dl_checksum = download(filename)
 
-            fail "#{filename}: checksums do not match" unless dl_checksum == db_checksum
+            raise "#{filename}: checksums do not match" unless dl_checksum == db_checksum
             updated << filename
           rescue => e
             restore_backup(filename)

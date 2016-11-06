@@ -41,8 +41,8 @@ module WPScan
         if parsed_options[:username]
           [User.new(parsed_options[:username])]
         else
-          File.open(parsed_options[:usernames]).reduce([]) do |a, e|
-            a << User.new(e.chomp)
+          File.open(parsed_options[:usernames]).reduce([]) do |acc, elem|
+            acc << User.new(elem.chomp)
           end
         end
       end
@@ -100,8 +100,8 @@ module WPScan
       #
       # @return [ Array<String> ]
       def passwords(wordlist_path)
-        @passwords ||= File.open(wordlist_path).reduce([]) do |a, e|
-          a << e.chomp
+        @passwords ||= File.open(wordlist_path).reduce([]) do |acc, elem|
+          acc << elem.chomp
         end
       end
 
@@ -109,15 +109,15 @@ module WPScan
       def output_error(response)
         return if response.body =~ /login_error/i
 
-        if response.timed_out?
-          error = 'Request timed out.'
-        elsif response.code == 0
-          error = "No response from remote server. WAF/IPS? (#{response.return_message})"
-        elsif response.code.to_s =~ /^50/
-          error = 'Server error, try reducing the number of threads.'
-        else
-          error = "Unknown response received Code: #{response.code}\n Body: #{response.body}"
-        end
+        error = if response.timed_out?
+                  'Request timed out.'
+                elsif response.code.zero?
+                  "No response from remote server. WAF/IPS? (#{response.return_message})"
+                elsif response.code.to_s =~ /^50/
+                  'Server error, try reducing the number of threads.'
+                else
+                  "Unknown response received Code: #{response.code}\n Body: #{response.body}"
+                end
 
         output('error', msg: error)
       end

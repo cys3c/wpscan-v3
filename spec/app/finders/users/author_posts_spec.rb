@@ -17,11 +17,11 @@ describe WPScan::Finders::Users::AuthorPosts do
       results = finder.potential_usernames(res)
 
       expect(results).to eql([
-        ['admin', 'Author Pattern', 100],
-        ['admin display_name', 'Display Name', 30],
-        ['editor', 'Author Pattern', 100],
-        ['editor', 'Display Name', 30]
-      ])
+                               ['admin', 'Author Pattern', 100],
+                               ['admin display_name', 'Display Name', 30],
+                               ['editor', 'Author Pattern', 100],
+                               ['editor', 'Display Name', 30]
+                             ])
     end
   end
 end

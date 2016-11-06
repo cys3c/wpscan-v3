@@ -12,7 +12,7 @@ module WPScan
             res = Browser.get_and_follow_location(url)
 
             res.html.css('generator').each do |node|
-              next unless node.text.to_s.strip.downcase == 'wordpress'
+              next unless node.text.to_s.strip.casecmp('wordpress').zero?
 
               found << create_version(
                 node['version'],

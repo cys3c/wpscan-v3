@@ -13,7 +13,7 @@ module WPScan
                 'LEFT JOIN paths on path_id = paths.id ' \
                 'WHERE md5_hash IN ' \
                 '(SELECT md5_hash FROM fingerprints GROUP BY md5_hash HAVING COUNT(*) = 1) ' \
-                'ORDER BY version DESC'
+                'ORDER BY version DESC'.freeze
 
         # @return [ WpVersion ]
         def aggressive(opts = {})

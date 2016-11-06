@@ -92,14 +92,14 @@ describe WPScan::Controller::Enumeration do
   describe '#cli_options' do
     it 'contains the correct options' do
       expect(controller.cli_options.map(&:to_sym)).to eql([
-        :enumerate, :exclude_content_based,
-        :plugins_list, :plugins_detection, :plugins_version_all,
-        :themes_list, :themes_detection, :themes_version_all,
-        :timthumbs_list, :timthumbs_detection,
-        :config_backups_list, :config_backups_detection,
-        :medias_detection,
-        :users_list, :users_detection
-      ])
+                                                            :enumerate, :exclude_content_based,
+                                                            :plugins_list, :plugins_detection, :plugins_version_all,
+                                                            :themes_list, :themes_detection, :themes_version_all,
+                                                            :timthumbs_list, :timthumbs_detection,
+                                                            :config_backups_list, :config_backups_detection,
+                                                            :medias_detection,
+                                                            :users_list, :users_detection
+                                                          ])
     end
   end
 
@@ -154,7 +154,7 @@ describe WPScan::Controller::Enumeration do
       end
 
       [:themes, :all_themes, :vulnerable_themes].each do |option|
-        context "#{option}" do
+        context option.to_s do
           let(:parsed_options) { super().merge(enumerate: { option => true }) }
 
           it 'calls the #enum_themes' do

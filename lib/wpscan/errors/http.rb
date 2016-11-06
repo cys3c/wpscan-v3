@@ -11,11 +11,11 @@ module WPScan
     def failure_details
       msg = response.effective_url
 
-      if response.code == 0 || response.timed_out?
-        msg += " (#{response.return_message})"
-      else
-        msg += " (status: #{response.code})"
-      end
+      msg += if response.code.zero? || response.timed_out?
+               " (#{response.return_message})"
+             else
+               " (status: #{response.code})"
+             end
 
       msg
     end

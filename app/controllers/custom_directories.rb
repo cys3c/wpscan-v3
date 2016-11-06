@@ -14,8 +14,9 @@ module WPScan
         target.content_dir = parsed_options[:wp_content_dir] if parsed_options[:wp_content_dir]
         target.plugins_dir = parsed_options[:wp_plugins_dir] if parsed_options[:wp_plugins_dir]
 
-        fail 'Unable to identify the wp-content dir, ' \
-             'please supply it with --wp-content-dir' unless target.content_dir
+        return if target.content_dir
+
+        raise 'Unable to identify the wp-content dir, please supply it with --wp-content-dir'
       end
     end
   end

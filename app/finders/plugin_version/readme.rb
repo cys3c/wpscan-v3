@@ -57,7 +57,7 @@ module WPScan
         def from_changelog_section(body)
           extracted_versions = body.scan(%r{[=]+\s+(?:v(?:ersion)?\s*)?([0-9\.-]+)[ \ta-z0-9\(\)\.\-\/]*[=]+}i)
 
-          return if extracted_versions.nil? || extracted_versions.length == 0
+          return if extracted_versions.nil? || extracted_versions.empty?
 
           extracted_versions.flatten!
           # must contain at least one number

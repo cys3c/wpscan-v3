@@ -19,7 +19,7 @@ module WPScan
 
             mod = WPScan::Finders::PluginVersion.const_get(constant_name)
 
-            fail "#{mod} has already a #{klass} class" if mod.constants.include?(klass.to_sym)
+            raise "#{mod} has already a #{klass} class" if mod.constants.include?(klass.to_sym)
 
             case klass
             when 'Comments' then create_plugins_comments_finders(mod, config[klass])

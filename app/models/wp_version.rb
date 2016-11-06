@@ -5,7 +5,7 @@ module WPScan
     attr_reader :db_data
 
     def initialize(number, opts = {})
-      fail InvalidWordPressVersion unless WpVersion.valid?(number.to_s)
+      raise InvalidWordPressVersion unless WpVersion.valid?(number.to_s)
 
       super(number, opts)
     end

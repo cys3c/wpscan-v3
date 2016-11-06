@@ -1,3 +1,7 @@
+AllCops:
+  Exclude:
+    - '*.gemspec'
+    - 'vendor/**/*'
 LineLength:
   Max: 120
 ClassVars:

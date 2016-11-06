@@ -6,8 +6,8 @@ module WPScan
     include CMSScanner::Target::Platform::PHP
     include CMSScanner::Target::Server::Generic
 
-    READMES    = %w(readme.txt README.txt Readme.txt ReadMe.txt README.TXT readme.TXT)
-    CHANGELOGS = %w(changelog.txt Changelog.txt ChangeLog.txt CHANGELOG.txt)
+    READMES    = %w(readme.txt README.txt Readme.txt ReadMe.txt README.TXT readme.TXT).freeze
+    CHANGELOGS = %w(changelog.txt Changelog.txt ChangeLog.txt CHANGELOG.txt).freeze
 
     attr_reader :uri, :name, :detection_opts, :target, :db_data
 

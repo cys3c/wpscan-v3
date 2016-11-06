@@ -21,7 +21,7 @@ module WPScan
     end
 
     def wpvulndb_urls
-      wpvulndb_ids.reduce([]) { |a, e| a << wpvulndb_url(e) }
+      wpvulndb_ids.reduce([]) { |acc, elem| acc << wpvulndb_url(elem) }
     end
 
     def wpvulndb_url(id)
