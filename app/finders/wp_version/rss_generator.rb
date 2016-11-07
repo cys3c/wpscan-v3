@@ -14,7 +14,7 @@ module WPScan
             res.html.xpath('//comment()[contains(., "wordpress")] | //generator').each do |node|
               node_text = node.text.to_s.strip
 
-              next unless node_text =~ %r{\Ahttp://wordpress\.(?:[a-z]+)/\?v=(.*)\z}i ||
+              next unless node_text =~ %r{\Ahttps?://wordpress\.(?:[a-z]+)/\?v=(.*)\z}i ||
                           node_text =~ %r{\Agenerator="wordpress/([^"]+)"\z}i
 
               found << create_version(

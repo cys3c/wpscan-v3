@@ -12,7 +12,7 @@ module WPScan
             res = Browser.get_and_follow_location(url)
 
             res.html.xpath('//generatoragent').each do |node|
-              next unless node['rdf:resource'] =~ %r{\Ahttp://wordpress\.(?:[a-z.]+)/\?v=(.*)\z}i
+              next unless node['rdf:resource'] =~ %r{\Ahttps?://wordpress\.(?:[a-z.]+)/\?v=(.*)\z}i
 
               found << create_version(
                 Regexp.last_match[1],
