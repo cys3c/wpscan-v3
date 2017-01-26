@@ -14,3 +14,7 @@ Metrics/CyclomaticComplexity:
   Max: 8
 Metrics/ClassLength:
   Max: 150
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
