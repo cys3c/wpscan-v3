@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.homepage              = 'http://wpscan.org/'
   s.license               = 'Dual'
 
-  s.files                 = `git ls-files -z`.split("\x0").reject do |file|
+  s.files                 = Dir.glob("**/*").reject do |file|
     file =~ %r{^(?:
       spec\/.*
       |Gemfile

@@ -1,9 +1,21 @@
 require 'bundler/gem_tasks'
-require 'rspec/core/rake_task'
-require 'rubocop/rake_task'
 
-RuboCop::RakeTask.new
-RSpec::Core::RakeTask.new(:spec)
+exec = []
 
-# Run rubocop & rspec before the build
-task build: [:rubocop, :spec]
+begin
+  require 'rspec/core/rake_task'
+  RSpec::Core::RakeTask.new(:spec)
+  exec << :spec
+rescue LoadError
+end
+
+begin
+  require 'rubocop/rake_task'
+  RuboCop::RakeTask.new
+  exec << :rubocop
+rescue LoadError
+end
+
+# Run rubocop & rspec before the build (only if installed)
+task build: exec
+

@@ -1,0 +1,14 @@
+git/
+bundle/
+.idea/
+.yardoc/
+cache/
+coverage/
+spec/
+.*
+**/*.md
+*.md
+Dockerfile
+**/*.orig
+*.orig
+
