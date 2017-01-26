@@ -21,6 +21,7 @@ Gem::Specification.new do |s|
       spec\/.*
       |Gemfile
       |Rakefile
+      |Dockerfile
       |\.rspec
       |\.gitignore
       |\.gitlab-ci.yml
@@ -28,6 +29,7 @@ Gem::Specification.new do |s|
       |\.travis.yml
       |\.ruby-gemset
       |\.ruby-version
+      |\.dockerignore
       )$}x
   end
   s.test_files            = []
