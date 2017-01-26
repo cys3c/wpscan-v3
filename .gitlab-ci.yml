@@ -1,4 +1,4 @@
-image: ruby:2.2.4
+image: ruby:2.4.0
 
 before_script:
   - "echo 'gem: --no-ri --no-rdoc' > ~/.gemrc"
