@@ -1,3 +1,5 @@
+# rubocop:disable all
+
 require 'bundler/gem_tasks'
 
 exec = []
@@ -19,3 +21,4 @@ end
 # Run rubocop & rspec before the build (only if installed)
 task build: exec
 
+# rubocop:enable all

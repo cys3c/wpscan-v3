@@ -82,15 +82,13 @@ describe WPScan::Finders::ThemeVersion::Style do
         let(:style_body) { File.new(File.join(fixtures, "#{file}.css")) }
 
         it 'returns the expected version' do
-          if expected_version
-            expected = WPScan::Version.new(
-              expected_version,
-              confidence: 80,
-              interesting_entries: ["#{theme.style_url}, Version: #{expected_version}"]
-            )
-          else
-            expected = nil
-          end
+          expected = if expected_version
+                       WPScan::Version.new(
+                         expected_version,
+                         confidence: 80,
+                         interesting_entries: ["#{theme.style_url}, Version: #{expected_version}"]
+                       )
+                     end
 
           expect(finder.style_version).to eql expected
         end
