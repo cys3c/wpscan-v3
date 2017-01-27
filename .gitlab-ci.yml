@@ -1,9 +1,9 @@
-image: ruby:2.4.0
+image: ruby:2.3.3
 
 before_script:
   - "echo 'gem: --no-ri --no-rdoc' > ~/.gemrc"
   - gem install bundler
   - bundle install --path=/cache/bundler --jobs $(nproc)  "${FLAGS[@]}"
-  
+
 build_job:
   script: "bundle exec rake build"

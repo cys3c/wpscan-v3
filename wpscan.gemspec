@@ -11,9 +11,9 @@ Gem::Specification.new do |s|
   s.authors               = ['WPScanTeam']
   s.date                  = Time.now.utc.strftime('%Y-%m-%d')
   s.email                 = ['team@wpscan.org']
-  s.summary               = 'WPScan Gem - Experimental'
-  s.description           = 'Future version of WPScan'
-  s.homepage              = 'http://wpscan.org/'
+  s.summary               = 'WPScan - WordPress Vulnerability Scanner'
+  s.description           = 'WPScan is a black box WordPress vulnerability scanner.'
+  s.homepage              = 'https://wpscan.org/'
   s.license               = 'Dual'
 
   s.files                 = Dir.glob('**/*').reject do |file|
