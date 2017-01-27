@@ -96,7 +96,7 @@ The "wpscan" term is a registered trademark. This License does not grant the use
 
 Prerequisites: Git
 
-```git clone https://bitbucket.org/wpscan/wpscan-v3```
+```git clone https://github.com/wpscanteam/wpscan-v3```
 
 ```cd wpscan```
 
