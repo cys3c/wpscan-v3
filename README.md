@@ -88,11 +88,11 @@ The "wpscan" term is a registered trademark. This License does not grant the use
 - RubyGems      - Recommended: latest
 
 
-### From RubyGems (not yet available):
+### From RubyGems:
 
 ```gem install wpscan```
 
-### From source:
+### From sources:
 
 Prerequisites: Git
 
@@ -139,7 +139,7 @@ Running ```wpscan``` in the current directory (pwd), is the same as ```wpscan -v
 
 # PROJECT HOME
 
-[http://www.wpscan.org](http://www.wpscan.org)
+[https://wpscan.org](https://wpscan.org)
 
 # VULNERABILITY DATABASE
 
