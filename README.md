@@ -104,7 +104,7 @@ Prerequisites: Git
 
 # Docker
 
-Coming soon... see Dockerfile
+Pull the repo with ```docker pull wpscanteam/wpscan-v3```
 
 # Usage
 
