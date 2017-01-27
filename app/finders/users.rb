@@ -1,4 +1,5 @@
 require_relative 'users/author_posts'
+require_relative 'users/wp_json_api'
 require_relative 'users/author_id_brute_forcing'
 require_relative 'users/login_error_messages'
 
@@ -13,6 +14,7 @@ module WPScan
         def initialize(target)
           finders <<
             Users::AuthorPosts.new(target) <<
+            Users::WpJsonApi.new(target) <<
             Users::AuthorIdBruteForcing.new(target) <<
             Users::LoginErrorMessages.new(target)
         end
