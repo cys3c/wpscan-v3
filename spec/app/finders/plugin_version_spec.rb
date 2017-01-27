@@ -10,7 +10,7 @@ describe WPScan::Finders::PluginVersion::Base do
   describe '#finders' do
     after do
       expect(target).to receive(:content_dir).and_return('wp-content')
-      expect(plugin_version.finders.map { |f| f.class.to_s.demodulize }).to eql @expected
+      expect(plugin_version.finders.map { |f| f.class.to_s.demodulize }).to match_array @expected
     end
 
     context 'when no related specific finders' do
